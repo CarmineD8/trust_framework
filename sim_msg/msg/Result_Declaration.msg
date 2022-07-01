@@ -1,0 +1,4 @@
+string auction_ID
+string performer_ID
+string declarant_ID
+string perceived_outcome

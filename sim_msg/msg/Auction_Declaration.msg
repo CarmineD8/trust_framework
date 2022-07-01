@@ -1,0 +1,4 @@
+string auction_ID
+string auctioneer_ID
+string declarant_ID
+string rates_string

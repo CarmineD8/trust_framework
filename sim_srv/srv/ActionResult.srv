@@ -1,0 +1,5 @@
+string auction_ID
+string perf_agent_ID
+string ver_agent_ID
+---
+string perceived_result

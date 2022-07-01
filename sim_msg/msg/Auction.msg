@@ -1,0 +1,6 @@
+string auction_ID
+string auctioneer_ID
+string state
+string winner_ID
+string verifiers_string
+string participants_string
