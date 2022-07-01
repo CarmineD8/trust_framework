@@ -43,6 +43,8 @@ def trigger_event():
     print(string)
     if EVENT_COUNTER == 60:
         print("STOP")
+        time.sleep(10)
+        exit()
     else:
         rospy.loginfo("<Simulation> "+ event_instance.event_ID + " triggered")
         EVENT_COUNTER = EVENT_COUNTER + 1

@@ -44,7 +44,7 @@ WINDOW_LENGTH = 500  #era 50
 
 BOOT_WINDOW_LENGTH = 500 #era 50
 
-TEST_PHASE_LENGTH = 10000 # era 1000
+TEST_PHASE_LENGTH = 1000 # era 1000
 
 class Rates(): #Class to store the estimated succ. and verif. rates of an agent 
     def __init__(self,performer_ID, init_success_rate, verification_rates, init_lsr = 0.0, init_usr = 0.0):
