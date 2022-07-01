@@ -16,7 +16,7 @@ class Event:
 
 
 RATE = 1000.0
-EVENT_TIMEOUT = 0.25 # in seconds. Era 14
+EVENT_TIMEOUT = 1.0 # in seconds. Era 0.25
 START_SLEEP = 60 # should be proportional to the # of agents. Era 10
 timer = 0.0
 COUNTER = 0
@@ -41,7 +41,7 @@ def trigger_event():
     print("\n")
     string = (event_instance.event_ID + "_" + str(event_instance.event_counter)).center(100, "#")
     print(string)
-    if EVENT_COUNTER == 60:
+    if EVENT_COUNTER == 5000:
         print("STOP")
         time.sleep(10)
         exit()
