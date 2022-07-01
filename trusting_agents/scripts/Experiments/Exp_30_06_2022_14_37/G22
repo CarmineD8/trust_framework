@@ -1,0 +1,269 @@
+30/06/2022 14:36:14
+############################# AT INITIALIZATION ##############################
+AGENT ID: <G22|Individualism|Realist>
+SETTINGS: 
+ -DECL. TIMEOUT: -30 
+ -LOG: -True 
+ -CB_LOG: True 
+ -MODE: BCIC 
+ 
+KNOWN AGENTS: 
+G1, G10, G11, G12, G13, G14, G15, G16, G17, G18, G19, G2, G20, G21, G22, G23, G24, G25, G26, G27, G28, G29, G3, G30, G31, G32, G33, G34, G35, G36, G37, G38, G39, G4, G40, G41, G42, G43, G44, G45, G46, G47, G48, G49, G5, G50, G6, G7, G8, G9
+
+__________________________
+ G22 ACTIONS LIST START ___________________________
+================================== E1 - G22 ==================================
+A1----------------------------------------------------------------------------
+| Agents | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | 
+|G1      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G10     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G11     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G12     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G13     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G14     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G15     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G16     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G17     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G18     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G19     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G2      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G20     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G21     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G22     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G23     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G24     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G25     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G26     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G27     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G28     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G29     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G3      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G30     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G31     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G32     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G33     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G34     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G35     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G36     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G37     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G38     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G39     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G4      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G40     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G41     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G42     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G43     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G44     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G45     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G46     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G47     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G48     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G49     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G5      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G50     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G6      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G7      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G8      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G9      |   1.000|       1.000|       0.000|       1.000|       0.000|
+----------------------------------------------------------------------------A1
+____________________________ G22 ACTIONS LIST END ____________________________
+
+##############################################################################
+
+> Auction [E1/A1/2] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/2] AD_START______________________________
+> Possible actions during event [E1]: [A1]
+G22 DECLARES: G22;OBS:1.000|LOW:0.000|UP:1.000;1.000;1.000
+              
+
+
+#############################AT 30_06_2022_14_37 #############################
+AGENT ID: <G22>
+KNOWN AGENTS: 
+G1, G10, G11, G12, G13, G14, G15, G16, G17, G18, G19, G2, G20, G21, G22, G23, G24, G25, G26, G27, G28, G29, G3, G30, G31, G32, G33, G34, G35, G36, G37, G38, G39, G4, G40, G41, G42, G43, G44, G45, G46, G47, G48, G49, G5, G50, G6, G7, G8, G9
+__________________________
+ G22 ACTIONS LIST START ___________________________
+================================== E1 - G22 ==================================
+A1----------------------------------------------------------------------------
+| Agents | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | 
+|G1      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G10     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G11     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G12     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G13     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G14     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G15     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G16     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G17     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G18     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G19     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G2      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G20     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G21     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G22     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G23     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G24     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G25     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G26     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G27     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G28     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G29     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G3      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G30     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G31     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G32     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G33     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G34     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G35     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G36     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G37     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G38     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G39     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G4      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G40     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G41     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G42     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G43     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G44     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G45     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G46     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G47     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G48     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G49     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G5      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G50     |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G6      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G7      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G8      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G9      |   1.000|       1.000|       0.000|       1.000|       0.000|
+----------------------------------------------------------------------------A1
+____________________________ G22 ACTIONS LIST END ____________________________
+___________________________G22  TRUST METRICS (50)____________________________
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_1$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_2$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_3$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_4$\\
+$G_5$\\
+$G_5$\\
+$G_6$\\
+$G_7$\\
+$G_8$\\
+$G_9$\\
+______________________________G22  TRUST METRICS______________________________
+##############################################################################
+
+ONGOING AUCTIONS :
+E1/A1/2	 STATE:2:Wait_AD_END
+ ONGOING AUCTION DECLARATIONS : 
+ ONGOING ACTION DECLARATIONS : 
+ ONGOING VERIFICATION DECLARATIONS : 
+____________________________RESULT VERIFICATION FOR E1/A1/2____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+_______________________________________________________________________________________
+
+
+
+COMPLETED AUCTIONS: 
+	 NONE ?!?!?!?
+
+CALLBACK LOG : 
+> CALLBACK INIT G22 START 
+> CALLBACK INIT G22 END A.A.K
+> CALLBACK AUCTION E1/A1/2 / AD_START START 
+> CALLBACK AUCTION E1/A1/2 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+

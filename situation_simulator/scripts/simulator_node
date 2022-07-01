@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+
+import rospy, sys
+from pathlib import Path
+from sim_msg.msg import Event_Instance
+
+class Action:
+	def __init__(self, action_ID):
+		self.action_ID = action_ID
+
+class Event:
+    def __init__(self, event_ID, auctioneer_ID, related_actions = []):
+        self.event_ID = event_ID
+        self.auctioneer_ID = auctioneer_ID
+        self.related_actions =  list(related_actions)
+
+
+RATE = 1000.0
+EVENT_TIMEOUT = 0.25 # in seconds. Era 14
+START_SLEEP = 60 # should be proportional to the # of agents. Era 10
+timer = 0.0
+COUNTER = 0
+EVENT_COUNTER = 0
+event_pub = rospy.Publisher
+event_instance = Event_Instance()
+
+sim_event_list = list()
+action_counters = list()
+
+
+def trigger_event():
+    global event_pub, event_instance, sim_event_list, COUNTER, EVENT_COUNTER
+  
+    #COUNTER = random.randrange(0, len(sim_event_list))
+    temp = sim_event_list[COUNTER]
+
+    event_instance = Event_Instance()
+    event_instance.event_counter = EVENT_COUNTER
+    event_instance.event_ID = temp.event_ID
+    event_instance.auctioneer_ID = temp.auctioneer_ID
+    print("\n")
+    string = (event_instance.event_ID + "_" + str(event_instance.event_counter)).center(100, "#")
+    print(string)
+    if EVENT_COUNTER == 60:
+        print("STOP")
+    else:
+        rospy.loginfo("<Simulation> "+ event_instance.event_ID + " triggered")
+        EVENT_COUNTER = EVENT_COUNTER + 1
+        
+        event_pub.publish(event_instance)
+                                
+
+def update_phase():
+    global timer, sim_event_list, COUNTER, RATE, EVENT_TIMEOUT
+
+    if timer == 0.1*RATE*EVENT_TIMEOUT:
+        trigger_event()
+    if timer == RATE*EVENT_TIMEOUT:
+        rospy.loginfo("<Simulation> "+ event_instance.event_ID + " is finished")
+        #Re-initialization for next event
+        timer = -1.0
+        if COUNTER == len(sim_event_list)-1:
+            COUNTER = 0
+        else:
+            COUNTER = COUNTER + 1
+        
+
+    timer = timer + 1.0
+
+def StringToEvent(event_string):
+    actions_list = []
+
+    event_data = event_string.split(">") 
+    event_ID = event_data[0]
+    auctioneer_ID = event_data[1]
+    actions_string = event_data[2].split("#")
+    for action_ID in actions_string:
+        actions_list.append(Action(action_ID))
+    
+    return Event(event_ID, auctioneer_ID, actions_list)
+
+def main(args):
+    global event_pub, timer, sim_event_list, action_counters, RATE, START_SLEEP
+
+    rospy.init_node('simulator')
+    #Declaring publishers and subscribe
+
+    event_pub = rospy.Publisher('simulated_event', Event_Instance, queue_size=10)
+
+    # in this list each action that can be performed by agents is listed and the rates are the actual rates of success and verification
+
+    sim_event_list = [ ]
+    path = Path(__file__).parent / 'Initialization_Data/InitializationFile.txt'
+    f = open(path, "r")
+    for line in f:
+        if line[0] == "!":
+            sim_event_list.append(StringToEvent(line.strip("!")))                  
+    f.close()
+    
+                       
+    rate = rospy.Rate(RATE) # 10/sec 
+    rospy.sleep(START_SLEEP)
+
+    while not rospy.is_shutdown():
+        update_phase()
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        main(sys.argv)
+    except rospy.ROSInterruptException:
+        pass

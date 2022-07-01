@@ -1,0 +1,270 @@
+#!/usr/bin/env python3
+
+import sys,random
+from random import choice
+from datetime import datetime
+import sys  
+import matplotlib
+from pathlib import Path
+from matplotlib.pyplot import xticks
+from numpy.lib.function_base import rot90
+matplotlib.use('TkAgg')
+from matplotlib.pylab import rc, subplot2grid, append, figure, ceil, ones, zeros, uniform, plt
+import matplotlib.colors as mcolors
+import os
+import errno
+import numpy as np
+import threading
+import matplotlib.ticker as plticker
+#/home/labo/ws/TrustMediator/src/trusting_agents/Experiments/BD_exp_1/log/plot_data
+
+
+import matplotlib.pyplot as plt
+
+SMALL_SIZE = 8
+MEDIUM_SIZE = 10
+BIGGER_SIZE = 26
+
+matplotlib.pyplot.rc('font', size=BIGGER_SIZE)          # controls default text sizes
+matplotlib.pyplot.rc('axes', titlesize=BIGGER_SIZE)     # fontsize of the axes title
+matplotlib.pyplot.rc('axes', labelsize=BIGGER_SIZE)    # fontsize of the x and y labels
+matplotlib.pyplot.rc('xtick', labelsize=BIGGER_SIZE)    # fontsize of the tick labels
+matplotlib.pyplot.rc('ytick', labelsize=BIGGER_SIZE)    # fontsize of the tick labels
+matplotlib.pyplot.rc('legend', fontsize=BIGGER_SIZE)    # legend fontsize
+matplotlib.pyplot.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
+TICKS = False
+TITLESIZE = 26
+XLABELSIZE = 26
+YLABELSIZE = 26
+LEGENDSIZE = 22
+x_ticks = {}
+def NameCutter(string, cut_length):
+        new_string = ""
+        if len(string) > cut_length:
+            new_string = string[:cut_length]
+        else:
+            new_string = string + " "*(cut_length-len(string))
+
+        return new_string
+
+
+def main(args):
+
+    print("Welcome to the plotter! \n")
+    
+    RLpath = input(" \n Please, enter the path of the plotter data folder:\n (Ex: /home/labo/ws/TrustMediator/src/trusting_agents/Plotter/plots/PD_XX_XX_XX_XXXX)\n")  
+    fig_list = []
+    exp_db = dict()
+    vtw_db = dict()
+    for filename in os.listdir(RLpath):
+        with open(os.path.join(RLpath, filename), 'r') as f:
+            agentX = ""
+            for line in f:
+                if line[0] == "#":
+                    agentX = line.strip("#")
+                    agentX = agentX.strip("\n")
+                    fig_list.append(agentX)
+                    exp_db[agentX] = {}
+                    vtw_db[agentX] = {}
+                    x_ticks[agentX] = {}
+                
+                elif line[0] == "$":
+                    temp_line = line.strip("$")
+                    temp_line = temp_line.strip("\n")
+                    agents_list = temp_line.split()
+                    for exp_ag_ID in agents_list:
+                        agent_ID = exp_ag_ID.split("|")[0]
+                        actions_list = exp_ag_ID.split("|")[1:]
+                        exp_db[agentX][agent_ID] = {}
+                        vtw_db[agentX][agent_ID] = {}
+                        for action_ID in actions_list:
+                            exp_db[agentX][agent_ID][action_ID] = []
+                            vtw_db[agentX][agent_ID][action_ID + " VTW"] = []
+                            
+                            
+                            
+                  
+                elif line[0] == "!" :
+                    if line[1] == "\n":
+                        continue
+                    else:
+                        temp = line[1:]
+                        temp = temp.strip("\n")
+                        temp = temp.strip("|")
+                        row = temp.split("|")
+                        x = row.pop(0)
+                        if True:
+                            for agent_ID in exp_db[agentX].keys():
+                                for action_ID in exp_db[agentX][agent_ID].keys():
+                                    data = row.pop(0)    
+                                    values = data.strip()
+                                    if len(values.split("; ")) != 3:
+                                        print(values.split("; "))
+                                    else:
+                                        auct_data, y1, y2  = values.split("; ")
+                                    if "NONE" in auct_data:
+                                        pass
+                                    else:
+                                        ev_ID, act_ID, auct_count, winner, perc_outcome = auct_data.split("/")
+                                        if perc_outcome == "True":
+                                            perc_outcome = "T"
+                                        else:
+                                            perc_outcome = "F"
+
+                                        tick = str(int(winner[1])-1)+"_"+act_ID
+                                    x_ticks[agentX][x] = tick
+                                    exp_db[agentX][agent_ID][action_ID].append([int(x), float(y1)])
+                                    vtw_db[agentX][agent_ID][action_ID + " VTW"].append([int(x), float(y2)])
+                        else:
+                            for agent_ID in exp_db[agentX].keys():
+                                for action_ID in exp_db[agentX][agent_ID].keys():
+                                    data = row.pop(0)    
+                                    values = data.strip()
+                                    if len(values.split("; ")) != 3:
+                                        print(values.split("; "))
+                                    else:
+                                        label, y1, y2  = values.split("; ")
+                                    exp_db[agentX][agent_ID][action_ID].append([int(x), float(y1)])
+                                    vtw_db[agentX][agent_ID][action_ID + " VTW"].append([int(x), float(y2)])
+                    
+                else:
+                    print(line)
+
+    folder_path = Path(__file__).parent / 'plots_data'
+    for ID in fig_list:
+        plot_the_plots(ID, exp_db, vtw_db[ID],x_ticks[ID], folder_path)
+    
+    plt.show()
+
+def plot_the_plots(ID, exp_database, vtw_db, ticks, folder_path):
+    # Setup figure and subplots
+    colors = dict()
+    colors.update(mcolors.CSS4_COLORS)
+    chosen_colors = []
+    names = ["dodgerblue", "orangered", "gray", "darkorange", "limegreen",  "pink", "gold", "aqua", "blue", "mediumorchid", "darkgrey" ,"black"]
+             #"navajowhite", "deeppink", "khaki", "darkgreen", "rebeccapurple", "lightcoral", "teal", "deepskyblue", "lawngreen"]
+    for name in names:
+        chosen_colors.append(colors[name])
+    exp_db = exp_database[ID]    
+    x_ticks = ticks
+    f1 = figure(int(ID.strip("G")), figsize = (12, 8))#, dpi = 100)
+    #f1.suptitle("%s Trust Metrics" %ID, fontsize=TITLESIZE)
+
+    #dict of plots axis
+    plt_axs = {}
+    i = 0
+    N_agents = len(exp_database.keys())
+    nCols = int(ceil(N_agents/5)) 
+    #Setting the subplot grid
+    for agent_ID in sorted(exp_database.keys()):
+        if N_agents <= 5:
+            plt_axs[agent_ID] = subplot2grid((N_agents,nCols), (i, 0))
+        elif N_agents <= 10:
+            if i < 5:
+                plt_axs[agent_ID] = subplot2grid((5,nCols), (i, 0))
+            else:
+                plt_axs[agent_ID] = subplot2grid((5,nCols), (i-5, 1))
+        else:
+            plt_axs[agent_ID] = subplot2grid((5,nCols), (i%5, int(i/5)))
+        i +=1
+    i = 0
+    # set y-limits
+    for ax in plt_axs.values():
+        ax.set_ylim(-1.05,1.05)
+        ax.set_xlim(0,59.5)
+
+    # Turn on grids
+    for ax in plt_axs.values():
+        ax.grid(True)
+    
+    #Extract data
+    k=0
+    for trustee in exp_db.keys():
+        i = 0
+        agent = 0
+        for exp_ID, exp_plt_data in exp_db[trustee].items():
+            x = []
+            y = []
+            j=0
+            for elem in exp_plt_data:
+                x.append(elem[0])
+                y.append(elem[1])
+                if (int(x_ticks[str(j)].split("_")[0]) == k and x_ticks[str(j)].split("_")[1] == exp_ID):
+                    plt_axs[trustee].plot(x[j], y[j], "|", color=chosen_colors[i], markersize=15, markeredgewidth=2.5)
+                j=j+1
+            plt_axs[trustee].plot(x, y, "-", color=chosen_colors[i], linewidth=1.8, label="Action " +exp_ID.split("A")[1])    
+            i += 1
+        k = k+1
+    
+    for trustee in vtw_db.keys():
+        i = 0
+        for vtw_ID, vtw_plt_data in vtw_db[trustee].items():
+            x = []
+            y = []
+            for elem in vtw_plt_data:
+                x.append(elem[0])
+                y.append(elem[1])
+
+            plt_axs[trustee].plot(x, y, "--", color=chosen_colors[i], linewidth=1.8, label="Action " +vtw_ID.split("A")[1])
+            i += 1
+    i = 0
+
+    def format_func(value, tick_number):
+        N = int(np.floor(value))
+        if N < 0:
+            return "NO_DATA"
+        elif N > len(x_ticks)-1:
+            return ""
+        else:
+            return x_ticks[str(N)]
+
+    # set label names
+    for agent_ID,ax in plt_axs.items():
+        ax.set_ylabel("%s" %(agent_ID), fontsize=YLABELSIZE)
+        ax.set_yticks(np.arange(-1.0, 1.2, 0.50)) # setting the ticks
+        if TICKS == True:
+            ax.xaxis.set_major_formatter(plt.FuncFormatter(format_func))
+            loc_minor = plticker.MultipleLocator(base=1.0) # this locator puts ticks at regular intervals
+            loc_minor.MAXTICKS = 30000
+            ax.xaxis.set_minor_locator(loc_minor)
+   
+    ax.set_xlabel("Auctions", fontsize=XLABELSIZE)
+    
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    
+    #i, j = 1, 3
+    #tups = list(by_label.items())
+    #tups[i], tups[j] = tups[j], tups[i]
+    #i, j = 2, 3
+    #tups[i], tups[j] = tups[j], tups[i]
+    #i, j = 3, 4
+    #tups[i], tups[j] = tups[j], tups[i]
+    
+    tups = list(by_label.items())
+    i, j = 1, 2
+    tups[i], tups[j] = tups[j], tups[i]
+    
+    by_label = dict(tups)
+  
+    leg = f1.legend(by_label.values(), by_label.keys(), loc='upper center', fontsize = LEGENDSIZE, ncol = 2 ) #bbox_to_anchor=(0.9, 1), ncol=int(ceil(len(by_label.keys())/4))
+    for legobj in leg.legendHandles:
+        legobj.set_linewidth(4.0)
+    
+    while True:
+        try:
+            if not os.path.exists(os.path.join(folder_path)):
+                os.makedirs(os.path.join(folder_path))
+            break
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise   
+            pass
+    
+    filename = "%s_Exp_Plots" %ID
+    f1.savefig(os.path.join(folder_path, filename))
+
+
+if __name__ == "__main__":
+    main(sys.argv)

@@ -1,0 +1,16 @@
+<launch> 
+<!-- SIMULATOR INITIALIZATION --> 
+<node name = "simulator_node" pkg = "situation_simulator" type = "simulator_node" output = "screen"/>
+<node name = "action_result_server" pkg = "situation_simulator" type = "action_result_server" output = "screen" args="None"/>
+<!-- AGENTS INITIALIZATION -->
+<node name = "G1" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G1 G1_G2_G3 E1>A1>G1;1.00;1.00;1.00/G2;1.00;1.00;1.00/G3;1.00;1.00;1.00#E2>A2>G1;1.00;1.00;1.00/G2;1.00;1.00;1.00/G3;1.00;1.00;1.00 None Collectivism|Optimist 127.0.0.1:5000" />
+
+<node name = "G2" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G2 G1_G2_G3 E1>A1>G1;1.00;1.00;1.00/G2;1.00;1.00;1.00/G3;1.00;1.00;1.00#E2>A2>G1;1.00;1.00;1.00/G2;1.00;1.00;1.00/G3;1.00;1.00;1.00 None Collectivism|Optimist 127.0.0.1:5001" />
+
+<node name = "G3" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G3 G1_G2_G3 E1>A1>G1;1.00;1.00;1.00/G2;1.00;1.00;1.00/G3;1.00;1.00;1.00#E2>A2>G1;1.00;1.00;1.00/G2;1.00;1.00;1.00/G3;1.00;1.00;1.00 None Collectivism|Optimist 127.0.0.1:5002" />
+
+
+</launch>

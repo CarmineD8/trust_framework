@@ -1,0 +1,37 @@
+<launch> 
+<!-- SIMULATOR INITIALIZATION --> 
+<node name = "simulator_node" pkg = "situation_simulator" type = "simulator_node" output = "screen"/>
+<node name = "action_result_server" pkg = "situation_simulator" type = "action_result_server" output = "screen" args = "None"/>
+<!-- AGENTS INITIALIZATION -->
+<node name = "G1" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G1 G1 Ev1>Action1>G1;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G1;1.00;1.00;1.00|G1;1.00;1.00;1.00 None None None" />
+
+<node name = "G2" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G2 G2 Ev1>Action1>G2;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G2;1.00;1.00;1.00|G2;1.00;1.00;1.00 None None None" />
+
+<node name = "G3" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G3 G3 Ev1>Action1>G3;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G3;1.00;1.00;1.00|G3;1.00;1.00;1.00 None None None" />
+
+<node name = "G4" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G4 G4 Ev1>Action1>G4;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G4;1.00;1.00;1.00|G4;1.00;1.00;1.00 None None None" />
+
+<node name = "G5" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G5 G5 Ev1>Action1>G5;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G5;1.00;1.00;1.00|G5;1.00;1.00;1.00 None None None" />
+
+<node name = "G6" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G6 G6 Ev1>Action1>G6;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G6;1.00;1.00;1.00|G6;1.00;1.00;1.00 None None None" />
+
+<node name = "G7" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G7 G7 Ev1>Action1>G7;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G7;1.00;1.00;1.00|G7;1.00;1.00;1.00 None None None" />
+
+<node name = "G8" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G8 G8 Ev1>Action1>G8;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G8;1.00;1.00;1.00|G8;1.00;1.00;1.00 None None None" />
+
+<node name = "G9" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G9 G9 Ev1>Action1>G9;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G9;1.00;1.00;1.00|G9;1.00;1.00;1.00 None None None" />
+
+<node name = "G10" pkg = "trusting_agents" type = "generic_trusting_agent" output = "screen" 
+	 args ="G10 G10 Ev1>Action1>G10;1.00;1.00;1.00#Ev2:SERIAL>Action2|Action3>G10;1.00;1.00;1.00|G10;1.00;1.00;1.00 None None None" />
+
+
+</launch>

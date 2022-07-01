@@ -1,0 +1,1616 @@
+30/12/2021 12:31:55
+############################# AT INITIALIZATION ##############################
+AGENT ID: <G2|Collectivism|Optimist>
+SETTINGS: 
+ -DECL. TIMEOUT: -30 
+ -LOG: -True 
+ -CB_LOG: True 
+ -MODE: BCIC 
+ 
+-IMPLEMENTATION:
+	 IP 127.0.0.1; 
+	 PORT# 5001
+KNOWN AGENTS: 
+G1, G2, G3
+
+___________________________
+ G2 ACTIONS LIST START ___________________________
+================================== E1 - G2 ===================================
+A1----------------------------------------------------------------------------
+| Agents | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | 
+|G1      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G2      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G3      |   1.000|       1.000|       0.000|       1.000|       0.000|
+----------------------------------------------------------------------------A1
+================================== E2 - G2 ===================================
+A2----------------------------------------------------------------------------
+| Agents | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | 
+|G1      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G2      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G3      |   1.000|       1.000|       0.000|       1.000|       0.000|
+----------------------------------------------------------------------------A2
+____________________________ G2 ACTIONS LIST END _____________________________
+
+##############################################################################
+
+
+
+=====================================0_E1=====================================
+> Auction [E1/A1/0] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/0] AD_START______________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G2;OBS:1.000|LOW:0.000|UP:1.000;1.000;1.000
+             
+______________________________ [E1/A1/0] AD_END_______________________________
+> The winner of auction [E1/A1/0] is [G2].
+> Verifying agents for auction E1/A1/0: G1, G2, G3
+> Everyone is ready!
+ > I am performing action [A1]. Estimated success rate = [ 1.000] 
+
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/0____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/0                                   |G2         |G2         |True              |
+|E1/A1/0                                   |G3         |G2         |False             |
+|E1/A1/0                                   |G1         |G2         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E1/A1/0---------------------------------
+	 My Decl: G2, G2, True
+	 Performer Decl: G2, G2, True
+	 Agents that declared True:G2, G1
+	 Agents that declared False:G3
+------------------------------------------------------------------------------
+
+
+=====================================1_E2=====================================
+
+> Initializing auction [E2/A2/1]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/1] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/1] AD_START______________________________
+G2 DECLARES: G2;OBS:1.000|LOW:0.000|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/1____________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/1                                   |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/1                                   |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/1                                   |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {}
+RELIABILITIES: {'A2, G2, G2': 1.0, 'A2, G3, G3': 1.0, 'A2, G1, G1': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 = 
+WEIGHTED RELIABILITY FOR G2 = 
+WEIGHTED RELIABILITY FOR G3 = 
+
+PERCEIVED COMPETENCE: {'G1': 1.0, 'G2': 0.3333333333333333, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/1] AD_END_______________________________
+> The winner of auction [E2/A2/1] is [G1].
+> Verifying agents for auction E2/A2/1: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/1____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/1                                   |G1         |G1         |True              |
+|E2/A2/1                                   |G3         |G1         |False             |
+|E2/A2/1                                   |G2         |G1         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E2/A2/1---------------------------------
+	 My Decl: G2, G1, True
+	 Performer Decl: G1, G1, True
+	 Agents that declared True:G1, G2
+	 Agents that declared False:G3
+------------------------------------------------------------------------------
+
+
+=====================================2_E1=====================================
+> Auction [E1/A1/2] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/2] AD_START______________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             
+______________________________ [E1/A1/2] AD_END_______________________________
+> The winner of auction [E1/A1/2] is [G3].
+> Verifying agents for auction E1/A1/2: G1, G2, G3
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/2____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/2                                   |G3         |G3         |True              |
+|E1/A1/2                                   |G2         |G3         |True              |
+|E1/A1/2                                   |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E1/A1/2---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+=====================================3_E2=====================================
+
+> Initializing auction [E2/A2/3]
+> Possible actions during event [E2]: [A2]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.000|UP:1.000;1.000;1.000
+             
+> Auction [E2/A2/3] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/3] AD_START______________________________
+____________________________________________Auction declarations received for E2/A2/3____________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/3                                   |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/3                                   |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/3                                   |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/3                                   |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/3                                   |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.3333333333333333, 'A2, G2,G1': 0.3333333333333333, 'A2, G2,G3': -0.3333333333333333}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G1, G1': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.333 * 1.000 + 0.333 * 1.000 
+WEIGHTED RELIABILITY FOR G2 =  0.333 * 1.000 
+WEIGHTED RELIABILITY FOR G3 = 
+
+PERCEIVED COMPETENCE: {'G1': 1.0, 'G2': 1.0, 'G3': 0.33333333333333337}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/3] AD_END_______________________________
+> The winner of auction [E2/A2/3] is [G2].
+> Verifying agents for auction E2/A2/3: G1, G2, G3
+> Everyone is ready!
+ > I am performing action [A2]. Estimated success rate = [ 1.000] 
+
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/3____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/3                                   |G2         |G2         |True              |
+|E2/A2/3                                   |G3         |G2         |False             |
+|E2/A2/3                                   |G1         |G2         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E2/A2/3---------------------------------
+	 My Decl: G2, G2, True
+	 Performer Decl: G2, G2, True
+	 Agents that declared True:G2, G1
+	 Agents that declared False:G3
+------------------------------------------------------------------------------
+
+
+=====================================4_E1=====================================
+> Auction [E1/A1/4] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/4] AD_START______________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             
+______________________________ [E1/A1/4] AD_END_______________________________
+> The winner of auction [E1/A1/4] is [G3].
+> Verifying agents for auction E1/A1/4: G1, G2, G3
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/4____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/4                                   |G3         |G3         |True              |
+|E1/A1/4                                   |G1         |G3         |False             |
+|E1/A1/4                                   |G2         |G3         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E1/A1/4---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2
+	 Agents that declared False:G1
+------------------------------------------------------------------------------
+
+
+=====================================5_E2=====================================
+
+> Initializing auction [E2/A2/5]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/5] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/5] AD_START______________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/5____________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+|G3         |G2         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/5                                   |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.3333333333333333, 'A2, G2,G3': -0.3333333333333333, 'A2, G2,G1': 0.3333333333333333}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.9, 'A2, G3, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.333 * 1.000 + 0.333 * 1.000 
+WEIGHTED RELIABILITY FOR G2 =  0.333 * 1.000 + 0.333 * 1.000 
+WEIGHTED RELIABILITY FOR G3 = 
+
+PERCEIVED COMPETENCE: {'G1': 1.0, 'G2': 1.0, 'G3': 0.3333333333333333}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/5] AD_END_______________________________
+> The winner of auction [E2/A2/5] is [G2].
+> Verifying agents for auction E2/A2/5: G1, G2, G3
+> Everyone is ready!
+ > I am performing action [A2]. Estimated success rate = [ 1.000] 
+
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/5____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/5                                   |G2         |G2         |True              |
+|E2/A2/5                                   |G3         |G2         |True              |
+|E2/A2/5                                   |G1         |G2         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E2/A2/5---------------------------------
+	 My Decl: G2, G2, True
+	 Performer Decl: G2, G2, True
+	 Agents that declared True:G2, G3, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+=====================================6_E1=====================================
+> Auction [E1/A1/6] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/6] AD_START______________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             
+______________________________ [E1/A1/6] AD_END_______________________________
+> The winner of auction [E1/A1/6] is [G1].
+> Verifying agents for auction E1/A1/6: G1, G2, G3
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/6____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/6                                   |G1         |G1         |True              |
+|E1/A1/6                                   |G3         |G1         |False             |
+|E1/A1/6                                   |G2         |G1         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E1/A1/6---------------------------------
+	 My Decl: G2, G1, True
+	 Performer Decl: G1, G1, True
+	 Agents that declared True:G1, G2
+	 Agents that declared False:G3
+------------------------------------------------------------------------------
+
+
+=====================================7_E2=====================================
+
+> Initializing auction [E2/A2/7]
+> Possible actions during event [E2]: [A2]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             
+> Auction [E2/A2/7] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/7] AD_START______________________________
+____________________________________________Auction declarations received for E2/A2/7____________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/7                                   |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.5555555555555555, 'A2, G2,G3': 0.11111111111111112, 'A2, G2,G1': 0.5555555555555555}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.556 * 1.000 + 0.556 * 1.000 + 0.111 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.556 * 1.000 + 0.556 * 1.000 + 0.111 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.111 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.990909090909091, 'G2': 0.9977272727272727, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/7] AD_END_______________________________
+> The winner of auction [E2/A2/7] is [G3].
+> Verifying agents for auction E2/A2/7: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/7____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/7                                   |G3         |G3         |True              |
+|E2/A2/7                                   |G2         |G3         |True              |
+|E2/A2/7                                   |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E2/A2/7---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+=====================================8_E1=====================================
+> Auction [E1/A1/8] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/8] AD_START______________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             
+______________________________ [E1/A1/8] AD_END_______________________________
+> The winner of auction [E1/A1/8] is [G3].
+> Verifying agents for auction E1/A1/8: G1, G2, G3
+> Action [A1] is finished, result perceived as [False].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/8____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/8                                   |G3         |G3         |True              |
+|E1/A1/8                                   |G2         |G3         |False             |
+|E1/A1/8                                   |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E1/A1/8---------------------------------
+	 My Decl: G2, G3, False
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G1
+	 Agents that declared False:G2
+------------------------------------------------------------------------------
+
+
+=====================================9_E2=====================================
+
+> Initializing auction [E2/A2/9]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/9] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/9] AD_START______________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/9____________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/9                                   |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.6666666666666666, 'A2, G2,G1': 0.6666666666666666, 'A2, G2,G3': 0.33333333333333337}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.667 * 1.000 + 0.667 * 1.000 + 0.333 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.667 * 1.000 + 0.667 * 1.000 + 0.333 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.667 * 1.000 + 0.667 * 1.000 + 0.333 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9800000000000001, 'G2': 0.995, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/9] AD_END_______________________________
+> The winner of auction [E2/A2/9] is [G3].
+> Verifying agents for auction E2/A2/9: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/9____________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/9                                   |G3         |G3         |True              |
+|E2/A2/9                                   |G2         |G3         |True              |
+|E2/A2/9                                   |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+---------------------------------<G2> E2/A2/9---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================10_E1=====================================
+> Auction [E1/A1/10] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/10] AD_START_____________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:0.667|LOW:0.135|UP:0.983;1.000;1.000
+             
+______________________________ [E1/A1/10] AD_END______________________________
+> The winner of auction [E1/A1/10] is [G3].
+> Verifying agents for auction E1/A1/10: G1, G2, G3
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/10___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/10                                  |G3         |G3         |True              |
+|E1/A1/10                                  |G2         |G3         |True              |
+|E1/A1/10                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E1/A1/10---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================11_E2=====================================
+
+> Initializing auction [E2/A2/11]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/11] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/11] AD_START_____________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/11___________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/11                                  |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.7333333333333333, 'A2, G2,G3': 0.4666666666666667, 'A2, G2,G1': 0.7333333333333333}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.733 * 1.000 + 0.733 * 1.000 + 0.467 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.733 * 1.000 + 0.733 * 1.000 + 0.467 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.733 * 1.000 + 0.733 * 1.000 + 0.467 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9758620689655174, 'G2': 0.9939655172413794, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/11] AD_END______________________________
+> The winner of auction [E2/A2/11] is [G3].
+> Verifying agents for auction E2/A2/11: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/11___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/11                                  |G3         |G3         |True              |
+|E2/A2/11                                  |G2         |G3         |True              |
+|E2/A2/11                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E2/A2/11---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================12_E1=====================================
+> Auction [E1/A1/12] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/12] AD_START_____________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:0.750|LOW:0.249|UP:0.987;1.000;1.000
+             
+______________________________ [E1/A1/12] AD_END______________________________
+> The winner of auction [E1/A1/12] is [G3].
+> Verifying agents for auction E1/A1/12: G1, G2, G3
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/12___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/12                                  |G3         |G3         |True              |
+|E1/A1/12                                  |G2         |G3         |True              |
+|E1/A1/12                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E1/A1/12---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================13_E2=====================================
+
+> Initializing auction [E2/A2/13]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/13] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/13] AD_START_____________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.464|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/13___________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/13                                  |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.7777777777777777, 'A2, G2,G1': 0.7777777777777777, 'A2, G2,G3': 0.5555555555555556}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.778 * 1.000 + 0.778 * 1.000 + 0.556 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.778 * 1.000 + 0.778 * 1.000 + 0.556 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.778 * 1.000 + 0.778 * 1.000 + 0.556 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9736842105263159, 'G2': 0.993421052631579, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/13] AD_END______________________________
+> The winner of auction [E2/A2/13] is [G3].
+> Verifying agents for auction E2/A2/13: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/13___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/13                                  |G3         |G3         |True              |
+|E2/A2/13                                  |G1         |G3         |True              |
+|E2/A2/13                                  |G2         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E2/A2/13---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G1, G2
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================14_E1=====================================
+> Auction [E1/A1/14] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/14] AD_START_____________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:0.800|LOW:0.343|UP:0.990;1.000;1.000
+             
+______________________________ [E1/A1/14] AD_END______________________________
+> The winner of auction [E1/A1/14] is [G3].
+> Verifying agents for auction E1/A1/14: G1, G2, G3
+> Action [A1] is finished, result perceived as [False].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/14___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/14                                  |G3         |G3         |True              |
+|E1/A1/14                                  |G2         |G3         |False             |
+|E1/A1/14                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E1/A1/14---------------------------------
+	 My Decl: G2, G3, False
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G1
+	 Agents that declared False:G2
+------------------------------------------------------------------------------
+
+
+====================================15_E2=====================================
+
+> Initializing auction [E2/A2/15]
+> Auction [E2/A2/15] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/15] AD_START_____________________________
+> Possible actions during event [E2]: [A2]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.562|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/15___________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/15                                  |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.8095238095238094, 'A2, G2,G1': 0.8095238095238094, 'A2, G2,G3': 0.6190476190476192}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.810 * 1.000 + 0.810 * 1.000 + 0.619 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.810 * 1.000 + 0.810 * 1.000 + 0.619 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.810 * 1.000 + 0.810 * 1.000 + 0.619 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9723404255319148, 'G2': 0.9930851063829785, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/15] AD_END______________________________
+> The winner of auction [E2/A2/15] is [G3].
+> Verifying agents for auction E2/A2/15: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/15___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/15                                  |G3         |G3         |True              |
+|E2/A2/15                                  |G2         |G3         |True              |
+|E2/A2/15                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E2/A2/15---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================16_E1=====================================
+> Auction [E1/A1/16] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/16] AD_START_____________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:0.667|LOW:0.271|UP:0.937;1.000;1.000
+             
+______________________________ [E1/A1/16] AD_END______________________________
+> The winner of auction [E1/A1/16] is [G3].
+> Verifying agents for auction E1/A1/16: G1, G2, G3
+> Action [A1] is finished, result perceived as [False].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/16___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/16                                  |G3         |G3         |True              |
+|E1/A1/16                                  |G2         |G3         |False             |
+|E1/A1/16                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E1/A1/16---------------------------------
+	 My Decl: G2, G3, False
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G1
+	 Agents that declared False:G2
+------------------------------------------------------------------------------
+
+
+====================================17_E2=====================================
+
+> Initializing auction [E2/A2/17]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/17] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/17] AD_START_____________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.631|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/17___________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/17                                  |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.8333333333333333, 'A2, G2,G3': 0.6666666666666667, 'A2, G2,G1': 0.8333333333333333}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.833 * 1.000 + 0.833 * 1.000 + 0.667 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.833 * 1.000 + 0.833 * 1.000 + 0.667 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.833 * 1.000 + 0.833 * 1.000 + 0.667 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9714285714285715, 'G2': 0.9928571428571429, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/17] AD_END______________________________
+> The winner of auction [E2/A2/17] is [G3].
+> Verifying agents for auction E2/A2/17: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/17___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/17                                  |G3         |G3         |True              |
+|E2/A2/17                                  |G2         |G3         |True              |
+|E2/A2/17                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E2/A2/17---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================18_E1=====================================
+> Auction [E1/A1/18] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/18] AD_START_____________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:0.571|LOW:0.225|UP:0.871;1.000;1.000
+             
+______________________________ [E1/A1/18] AD_END______________________________
+> The winner of auction [E1/A1/18] is [G1].
+> Verifying agents for auction E1/A1/18: G1, G2, G3
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/18___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/18                                  |G1         |G1         |True              |
+|E1/A1/18                                  |G3         |G1         |False             |
+|E1/A1/18                                  |G2         |G1         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E1/A1/18---------------------------------
+	 My Decl: G2, G1, True
+	 Performer Decl: G1, G1, True
+	 Agents that declared True:G1, G2
+	 Agents that declared False:G3
+------------------------------------------------------------------------------
+
+
+====================================19_E2=====================================
+
+> Initializing auction [E2/A2/19]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/19] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/19] AD_START_____________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.681|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/19___________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/19                                  |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.8518518518518517, 'A2, G2,G1': 0.8518518518518517, 'A2, G2,G3': 0.7037037037037037}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.852 * 1.000 + 0.852 * 1.000 + 0.704 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.852 * 1.000 + 0.852 * 1.000 + 0.704 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.852 * 1.000 + 0.852 * 1.000 + 0.704 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9707692307692307, 'G2': 0.9926923076923075, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/19] AD_END______________________________
+> The winner of auction [E2/A2/19] is [G3].
+> Verifying agents for auction E2/A2/19: G1, G2, G3
+> Action [A2] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/19___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/19                                  |G3         |G3         |True              |
+|E2/A2/19                                  |G2         |G3         |True              |
+|E2/A2/19                                  |G1         |G3         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E2/A2/19---------------------------------
+	 My Decl: G2, G3, True
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3, G2, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================20_E1=====================================
+> Auction [E1/A1/20] declaration phase is started 
+> The auctioneer is [G1]
+_____________________________ [E1/A1/20] AD_START_____________________________
+> Possible actions during event [E1]: [A1]
+G2 DECLARES: G1;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G3;OBS:0.571|LOW:0.225|UP:0.871;1.000;1.000
+             
+______________________________ [E1/A1/20] AD_END______________________________
+> The winner of auction [E1/A1/20] is [G2].
+> Verifying agents for auction E1/A1/20: G1, G2, G3
+> Everyone is ready!
+ > I am performing action [A1]. Estimated success rate = [ 1.000] 
+
+> Action [A1] is finished, result perceived as [True].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E1/A1/20___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E1/A1/20                                  |G2         |G2         |True              |
+|E1/A1/20                                  |G3         |G2         |True              |
+|E1/A1/20                                  |G1         |G2         |True              |
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E1/A1/20---------------------------------
+	 My Decl: G2, G2, True
+	 Performer Decl: G2, G2, True
+	 Agents that declared True:G2, G3, G1
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+====================================21_E2=====================================
+
+> Initializing auction [E2/A2/21]
+> Possible actions during event [E2]: [A2]
+> Auction [E2/A2/21] declaration phase is started 
+> The auctioneer is [G2]
+_____________________________ [E2/A2/21] AD_START_____________________________
+G2 DECLARES: G1;OBS:1.000|LOW:0.100|UP:1.000;1.000;1.000
+             G2;OBS:1.000|LOW:0.316|UP:1.000;1.000;1.000
+             G3;OBS:1.000|LOW:0.720|UP:1.000;1.000;1.000
+             
+____________________________________________Auction declarations received for E2/A2/21___________________________________________
+| Declarant | Performer | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | Auction ID                               |
+|G1         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G1         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G1         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G2         |G1         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G2         |G2         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G2         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G3         |G1         |   0.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G3         |G2         |   0.500|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+|G3         |G3         |   1.000|       1.000|       0.000|       1.000|       0.000|E2/A2/21                                  |
+'–––––––––––'–––––––––––'––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––'––––––––––––––––––––––––––––––––––––––––––'
+
+
+DECLARING AGENTS VTW: {'A2, G2,G2': 0.8666666666666666, 'A2, G2,G3': 0.7333333333333334, 'A2, G2,G1': 0.8666666666666666}
+RELIABILITIES: {'A2, G2, G1': 1.0, 'A2, G2, G2': 1.0, 'A2, G2, G3': 1.0, 'A2, G3, G1': 0.9, 'A2, G3, G2': 0.975, 'A2, G3, G3': 1.0, 'A2, G1, G1': 1.0, 'A2, G1, G2': 1.0, 'A2, G1, G3': 1.0}
+
+WEIGHTED RELIABILITY FOR G1 =  0.867 * 1.000 + 0.867 * 1.000 + 0.733 * 0.900 
+WEIGHTED RELIABILITY FOR G2 =  0.867 * 1.000 + 0.867 * 1.000 + 0.733 * 0.975 
+WEIGHTED RELIABILITY FOR G3 =  0.867 * 1.000 + 0.867 * 1.000 + 0.733 * 1.000 
+
+PERCEIVED COMPETENCE: {'G1': 0.9702702702702701, 'G2': 0.9925675675675675, 'G3': 1.0}
+> Winner-estimated success rate: [1.000]
+> I have received declarations from: G1, G2, G3
+
+______________________________ [E2/A2/21] AD_END______________________________
+> The winner of auction [E2/A2/21] is [G3].
+> Verifying agents for auction E2/A2/21: G1, G2, G3
+> Action [A2] is finished, result perceived as [G2|VERIFYING|E2/A2/21].Estimated verification rates = [ 1.000, 1.000]
+____________________________RESULT VERIFICATION FOR E2/A2/21___________________________
+| Auction ID                               | Declarant | Performer | Perceived Result |
+|E2/A2/21                                  |G3         |G3         |True              |
+|E2/A2/21                                  |G1         |G3         |G1|VERIFYING|E2/A2|
+|E2/A2/21                                  |G2         |G3         |G2|VERIFYING|E2/A2|
+_______________________________________________________________________________________
+
+
+--------------------------------<G2> E2/A2/21---------------------------------
+	 My Decl: G2, G3, G2|VERIFYING|E2/A2/21
+	 Performer Decl: G3, G3, True
+	 Agents that declared True:G3
+	 Agents that declared False:
+------------------------------------------------------------------------------
+
+
+#############################AT 30_12_2021_12_37 #############################
+AGENT ID: <G2>
+KNOWN AGENTS: 
+G1, G2, G3
+___________________________
+ G2 ACTIONS LIST START ___________________________
+================================== E1 - G2 ===================================
+A1----------------------------------------------------------------------------
+| Agents | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | 
+|G1      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G2      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G3      |   1.000|       1.000|       0.000|       1.000|       0.000|
+----------------------------------------------------------------------------A1
+================================== E2 - G2 ===================================
+A2----------------------------------------------------------------------------
+| Agents | eSucc% | eVer%(T|T) | eVer%(F|T) | eVer%(F|F) | eVer%(T|F) | 
+|G1      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G2      |   1.000|       1.000|       0.000|       1.000|       0.000|
+|G3      |   1.000|       1.000|       0.000|       1.000|       0.000|
+----------------------------------------------------------------------------A2
+____________________________ G2 ACTIONS LIST END _____________________________
+____________________________G2  TRUST METRICS (3)_____________________________
+$G_1$ & 1.00 (2; 0) & 0.52 (11) & 1.00 (1; 0) & 0.87 (10)\\
+$G_2$ & 1.00 (2; 0) & 0.39 (11) & 1.00 (2; 0) & 0.87 (10)\\
+$G_3$ & 0.57 (4; 3) & 0.39 (11) & 0.88 (7; 1) & 0.70 (11)\\
+______________________________G2  TRUST METRICS_______________________________
+##############################################################################
+
+ONGOING AUCTIONS :
+	 NONE 
+
+COMPLETED AUCTIONS: 
+22 Auctions completed without errors
+CALLBACK LOG : 
+> CALLBACK INIT G3 START 
+> CALLBACK INIT G3 END A.A.K
+> CALLBACK INIT G1 START 
+> CALLBACK INIT G1 END A.A.K
+> CALLBACK INIT G2 START 
+> CALLBACK INIT G2 END A.A.K
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION DECL E1/A1/0 START 
+> CALLBACK AUCTION DECL E1/A1/0 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/0 / AD_START START 
+> CALLBACK AUCTION E1/A1/0 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/0 START 
+> CALLBACK AUCTION DECL E1/A1/0 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/0 START 
+> CALLBACK AUCTION DECL E1/A1/0 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/0 / AD_END START 
+> CALLBACK AUCTION E1/A1/0 / AD_END END 
+> CALLBACK ACTION E1/A1/0 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/0 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/0 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/0 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/0 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/0 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/0 / Act_START START  
+> CALLBACK ACTION E1/A1/0 / Act_START END  
+> CALLBACK ACTION E1/A1/0 / Act_END START  
+> CALLBACK ACTION E1/A1/0 / Act_END END  
+> CALLBACK VER DECL E1/A1/0 FROM G2 START 
+> CALLBACK VER DECL E1/A1/0 FROM G2 END 
+> CALLBACK VER DECL E1/A1/0 FROM G3 START 
+> CALLBACK VER DECL E1/A1/0 FROM G3 END 
+> CALLBACK VER DECL E1/A1/0 FROM G1 START 
+> CALLBACK VER DECL E1/A1/0 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/1 / AD_START START 
+> CALLBACK AUCTION E2/A2/1 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/1 START 
+> CALLBACK AUCTION DECL E2/A2/1 END 
+> CALLBACK AUCTION DECL E2/A2/1 START 
+> CALLBACK AUCTION DECL E2/A2/1 END 
+> CALLBACK AUCTION DECL E2/A2/1 START 
+> CALLBACK AUCTION DECL E2/A2/1 END 
+> CALLBACK AUCTION E2/A2/1 / AD_END START 
+> CALLBACK AUCTION E2/A2/1 / AD_END END 
+> CALLBACK ACTION E2/A2/1 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/1 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/1 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/1 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/1 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/1 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/1 / Act_START START  
+> CALLBACK ACTION E2/A2/1 / Act_START END  
+> CALLBACK ACTION E2/A2/1 / Act_END START  
+> CALLBACK ACTION E2/A2/1 / Act_END END  
+> CALLBACK VER DECL E2/A2/1 FROM G1 START 
+> CALLBACK VER DECL E2/A2/1 FROM G1 END 
+> CALLBACK VER DECL E2/A2/1 FROM G3 START 
+> CALLBACK VER DECL E2/A2/1 FROM G3 END 
+> CALLBACK VER DECL E2/A2/1 FROM G2 START 
+> CALLBACK VER DECL E2/A2/1 FROM G2 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/2 / AD_START START 
+> CALLBACK AUCTION E1/A1/2 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/2 START 
+> CALLBACK AUCTION DECL E1/A1/2 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/2 / AD_END START 
+> CALLBACK AUCTION E1/A1/2 / AD_END END 
+> CALLBACK ACTION E1/A1/2 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/2 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/2 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/2 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/2 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/2 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/2 / Act_START START  
+> CALLBACK ACTION E1/A1/2 / Act_START END  
+> CALLBACK ACTION E1/A1/2 / Act_END START  
+> CALLBACK ACTION E1/A1/2 / Act_END END  
+> CALLBACK VER DECL E1/A1/2 FROM G3 START 
+> CALLBACK VER DECL E1/A1/2 FROM G3 END 
+> CALLBACK VER DECL E1/A1/2 FROM G2 START 
+> CALLBACK VER DECL E1/A1/2 FROM G2 END 
+> CALLBACK VER DECL E1/A1/2 FROM G1 START 
+> CALLBACK VER DECL E1/A1/2 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/3 / AD_START START 
+> CALLBACK AUCTION E2/A2/3 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/3 START 
+> CALLBACK AUCTION DECL E2/A2/3 END 
+> CALLBACK AUCTION DECL E2/A2/3 START 
+> CALLBACK AUCTION DECL E2/A2/3 END 
+> CALLBACK AUCTION DECL E2/A2/3 START 
+> CALLBACK AUCTION DECL E2/A2/3 END 
+> CALLBACK AUCTION E2/A2/3 / AD_END START 
+> CALLBACK AUCTION E2/A2/3 / AD_END END 
+> CALLBACK ACTION E2/A2/3 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/3 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/3 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/3 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/3 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/3 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/3 / Act_START START  
+> CALLBACK ACTION E2/A2/3 / Act_START END  
+> CALLBACK ACTION E2/A2/3 / Act_END START  
+> CALLBACK ACTION E2/A2/3 / Act_END END  
+> CALLBACK VER DECL E2/A2/3 FROM G2 START 
+> CALLBACK VER DECL E2/A2/3 FROM G2 END 
+> CALLBACK VER DECL E2/A2/3 FROM G3 START 
+> CALLBACK VER DECL E2/A2/3 FROM G3 END 
+> CALLBACK VER DECL E2/A2/3 FROM G1 START 
+> CALLBACK VER DECL E2/A2/3 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/4 / AD_START START 
+> CALLBACK AUCTION E1/A1/4 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/4 START 
+> CALLBACK AUCTION DECL E1/A1/4 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/4 START 
+> CALLBACK AUCTION DECL E1/A1/4 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/4 START 
+> CALLBACK AUCTION DECL E1/A1/4 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/4 / AD_END START 
+> CALLBACK AUCTION E1/A1/4 / AD_END END 
+> CALLBACK ACTION E1/A1/4 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/4 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/4 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/4 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/4 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/4 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/4 / Act_START START  
+> CALLBACK ACTION E1/A1/4 / Act_START END  
+> CALLBACK ACTION E1/A1/4 / Act_END START  
+> CALLBACK ACTION E1/A1/4 / Act_END END  
+> CALLBACK VER DECL E1/A1/4 FROM G3 START 
+> CALLBACK VER DECL E1/A1/4 FROM G3 END 
+> CALLBACK VER DECL E1/A1/4 FROM G1 START 
+> CALLBACK VER DECL E1/A1/4 FROM G1 END 
+> CALLBACK VER DECL E1/A1/4 FROM G2 START 
+> CALLBACK VER DECL E1/A1/4 FROM G2 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/5 / AD_START START 
+> CALLBACK AUCTION E2/A2/5 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/5 START 
+> CALLBACK AUCTION DECL E2/A2/5 END 
+> CALLBACK AUCTION DECL E2/A2/5 START 
+> CALLBACK AUCTION DECL E2/A2/5 END 
+> CALLBACK AUCTION DECL E2/A2/5 START 
+> CALLBACK AUCTION DECL E2/A2/5 END 
+> CALLBACK AUCTION E2/A2/5 / AD_END START 
+> CALLBACK AUCTION E2/A2/5 / AD_END END 
+> CALLBACK ACTION E2/A2/5 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/5 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/5 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/5 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/5 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/5 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/5 / Act_START START  
+> CALLBACK ACTION E2/A2/5 / Act_START END  
+> CALLBACK ACTION E2/A2/5 / Act_END START  
+> CALLBACK ACTION E2/A2/5 / Act_END END  
+> CALLBACK VER DECL E2/A2/5 FROM G2 START 
+> CALLBACK VER DECL E2/A2/5 FROM G2 END 
+> CALLBACK VER DECL E2/A2/5 FROM G3 START 
+> CALLBACK VER DECL E2/A2/5 FROM G3 END 
+> CALLBACK VER DECL E2/A2/5 FROM G1 START 
+> CALLBACK VER DECL E2/A2/5 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/6 / AD_START START 
+> CALLBACK AUCTION E1/A1/6 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/6 START 
+> CALLBACK AUCTION DECL E1/A1/6 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/6 START 
+> CALLBACK AUCTION DECL E1/A1/6 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/6 START 
+> CALLBACK AUCTION DECL E1/A1/6 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/6 / AD_END START 
+> CALLBACK AUCTION E1/A1/6 / AD_END END 
+> CALLBACK ACTION E1/A1/6 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/6 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/6 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/6 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/6 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/6 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/6 / Act_START START  
+> CALLBACK ACTION E1/A1/6 / Act_START END  
+> CALLBACK ACTION E1/A1/6 / Act_END START  
+> CALLBACK ACTION E1/A1/6 / Act_END END  
+> CALLBACK VER DECL E1/A1/6 FROM G1 START 
+> CALLBACK VER DECL E1/A1/6 FROM G1 END 
+> CALLBACK VER DECL E1/A1/6 FROM G3 START 
+> CALLBACK VER DECL E1/A1/6 FROM G3 END 
+> CALLBACK VER DECL E1/A1/6 FROM G2 START 
+> CALLBACK VER DECL E1/A1/6 FROM G2 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/7 / AD_START START 
+> CALLBACK AUCTION E2/A2/7 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/7 START 
+> CALLBACK AUCTION DECL E2/A2/7 END 
+> CALLBACK AUCTION DECL E2/A2/7 START 
+> CALLBACK AUCTION DECL E2/A2/7 END 
+> CALLBACK AUCTION DECL E2/A2/7 START 
+> CALLBACK AUCTION DECL E2/A2/7 END 
+> CALLBACK AUCTION E2/A2/7 / AD_END START 
+> CALLBACK AUCTION E2/A2/7 / AD_END END 
+> CALLBACK ACTION E2/A2/7 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/7 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/7 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/7 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/7 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/7 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/7 / Act_START START  
+> CALLBACK ACTION E2/A2/7 / Act_START END  
+> CALLBACK ACTION E2/A2/7 / Act_END START  
+> CALLBACK ACTION E2/A2/7 / Act_END END  
+> CALLBACK VER DECL E2/A2/7 FROM G3 START 
+> CALLBACK VER DECL E2/A2/7 FROM G3 END 
+> CALLBACK VER DECL E2/A2/7 FROM G2 START 
+> CALLBACK VER DECL E2/A2/7 FROM G2 END 
+> CALLBACK VER DECL E2/A2/7 FROM G1 START 
+> CALLBACK VER DECL E2/A2/7 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/8 / AD_START START 
+> CALLBACK AUCTION E1/A1/8 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/8 START 
+> CALLBACK AUCTION DECL E1/A1/8 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/8 START 
+> CALLBACK AUCTION DECL E1/A1/8 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/8 START 
+> CALLBACK AUCTION DECL E1/A1/8 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/8 / AD_END START 
+> CALLBACK AUCTION E1/A1/8 / AD_END END 
+> CALLBACK ACTION E1/A1/8 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/8 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/8 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/8 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/8 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/8 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/8 / Act_START START  
+> CALLBACK ACTION E1/A1/8 / Act_START END  
+> CALLBACK ACTION E1/A1/8 / Act_END START  
+> CALLBACK ACTION E1/A1/8 / Act_END END  
+> CALLBACK VER DECL E1/A1/8 FROM G3 START 
+> CALLBACK VER DECL E1/A1/8 FROM G3 END 
+> CALLBACK VER DECL E1/A1/8 FROM G2 START 
+> CALLBACK VER DECL E1/A1/8 FROM G2 END 
+> CALLBACK VER DECL E1/A1/8 FROM G1 START 
+> CALLBACK VER DECL E1/A1/8 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/9 / AD_START START 
+> CALLBACK AUCTION E2/A2/9 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/9 START 
+> CALLBACK AUCTION DECL E2/A2/9 END 
+> CALLBACK AUCTION DECL E2/A2/9 START 
+> CALLBACK AUCTION DECL E2/A2/9 END 
+> CALLBACK AUCTION DECL E2/A2/9 START 
+> CALLBACK AUCTION DECL E2/A2/9 END 
+> CALLBACK AUCTION E2/A2/9 / AD_END START 
+> CALLBACK AUCTION E2/A2/9 / AD_END END 
+> CALLBACK ACTION E2/A2/9 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/9 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/9 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/9 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/9 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/9 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/9 / Act_START START  
+> CALLBACK ACTION E2/A2/9 / Act_START END  
+> CALLBACK ACTION E2/A2/9 / Act_END START  
+> CALLBACK ACTION E2/A2/9 / Act_END END  
+> CALLBACK VER DECL E2/A2/9 FROM G3 START 
+> CALLBACK VER DECL E2/A2/9 FROM G3 END 
+> CALLBACK VER DECL E2/A2/9 FROM G2 START 
+> CALLBACK VER DECL E2/A2/9 FROM G2 END 
+> CALLBACK VER DECL E2/A2/9 FROM G1 START 
+> CALLBACK VER DECL E2/A2/9 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/10 / AD_START START 
+> CALLBACK AUCTION E1/A1/10 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/10 START 
+> CALLBACK AUCTION DECL E1/A1/10 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/10 START 
+> CALLBACK AUCTION DECL E1/A1/10 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/10 START 
+> CALLBACK AUCTION DECL E1/A1/10 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/10 / AD_END START 
+> CALLBACK AUCTION E1/A1/10 / AD_END END 
+> CALLBACK ACTION E1/A1/10 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/10 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/10 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/10 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/10 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/10 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/10 / Act_START START  
+> CALLBACK ACTION E1/A1/10 / Act_START END  
+> CALLBACK ACTION E1/A1/10 / Act_END START  
+> CALLBACK ACTION E1/A1/10 / Act_END END  
+> CALLBACK VER DECL E1/A1/10 FROM G3 START 
+> CALLBACK VER DECL E1/A1/10 FROM G3 END 
+> CALLBACK VER DECL E1/A1/10 FROM G2 START 
+> CALLBACK VER DECL E1/A1/10 FROM G2 END 
+> CALLBACK VER DECL E1/A1/10 FROM G1 START 
+> CALLBACK VER DECL E1/A1/10 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/11 / AD_START START 
+> CALLBACK AUCTION E2/A2/11 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/11 START 
+> CALLBACK AUCTION DECL E2/A2/11 END 
+> CALLBACK AUCTION DECL E2/A2/11 START 
+> CALLBACK AUCTION DECL E2/A2/11 END 
+> CALLBACK AUCTION DECL E2/A2/11 START 
+> CALLBACK AUCTION DECL E2/A2/11 END 
+> CALLBACK AUCTION E2/A2/11 / AD_END START 
+> CALLBACK AUCTION E2/A2/11 / AD_END END 
+> CALLBACK ACTION E2/A2/11 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/11 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/11 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/11 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/11 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/11 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/11 / Act_START START  
+> CALLBACK ACTION E2/A2/11 / Act_START END  
+> CALLBACK ACTION E2/A2/11 / Act_END START  
+> CALLBACK ACTION E2/A2/11 / Act_END END  
+> CALLBACK VER DECL E2/A2/11 FROM G3 START 
+> CALLBACK VER DECL E2/A2/11 FROM G3 END 
+> CALLBACK VER DECL E2/A2/11 FROM G2 START 
+> CALLBACK VER DECL E2/A2/11 FROM G2 END 
+> CALLBACK VER DECL E2/A2/11 FROM G1 START 
+> CALLBACK VER DECL E2/A2/11 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/12 / AD_START START 
+> CALLBACK AUCTION E1/A1/12 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/12 START 
+> CALLBACK AUCTION DECL E1/A1/12 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/12 START 
+> CALLBACK AUCTION DECL E1/A1/12 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/12 START 
+> CALLBACK AUCTION DECL E1/A1/12 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/12 / AD_END START 
+> CALLBACK AUCTION E1/A1/12 / AD_END END 
+> CALLBACK ACTION E1/A1/12 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/12 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/12 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/12 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/12 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/12 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/12 / Act_START START  
+> CALLBACK ACTION E1/A1/12 / Act_START END  
+> CALLBACK ACTION E1/A1/12 / Act_END START  
+> CALLBACK ACTION E1/A1/12 / Act_END END  
+> CALLBACK VER DECL E1/A1/12 FROM G3 START 
+> CALLBACK VER DECL E1/A1/12 FROM G3 END 
+> CALLBACK VER DECL E1/A1/12 FROM G2 START 
+> CALLBACK VER DECL E1/A1/12 FROM G2 END 
+> CALLBACK VER DECL E1/A1/12 FROM G1 START 
+> CALLBACK VER DECL E1/A1/12 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/13 / AD_START START 
+> CALLBACK AUCTION E2/A2/13 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/13 START 
+> CALLBACK AUCTION DECL E2/A2/13 END 
+> CALLBACK AUCTION DECL E2/A2/13 START 
+> CALLBACK AUCTION DECL E2/A2/13 END 
+> CALLBACK AUCTION DECL E2/A2/13 START 
+> CALLBACK AUCTION DECL E2/A2/13 END 
+> CALLBACK AUCTION E2/A2/13 / AD_END START 
+> CALLBACK AUCTION E2/A2/13 / AD_END END 
+> CALLBACK ACTION E2/A2/13 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/13 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/13 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/13 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/13 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/13 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/13 / Act_START START  
+> CALLBACK ACTION E2/A2/13 / Act_START END  
+> CALLBACK ACTION E2/A2/13 / Act_END START  
+> CALLBACK ACTION E2/A2/13 / Act_END END  
+> CALLBACK VER DECL E2/A2/13 FROM G3 START 
+> CALLBACK VER DECL E2/A2/13 FROM G3 END 
+> CALLBACK VER DECL E2/A2/13 FROM G1 START 
+> CALLBACK VER DECL E2/A2/13 FROM G1 END 
+> CALLBACK VER DECL E2/A2/13 FROM G2 START 
+> CALLBACK VER DECL E2/A2/13 FROM G2 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/14 / AD_START START 
+> CALLBACK AUCTION E1/A1/14 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/14 START 
+> CALLBACK AUCTION DECL E1/A1/14 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/14 START 
+> CALLBACK AUCTION DECL E1/A1/14 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/14 START 
+> CALLBACK AUCTION DECL E1/A1/14 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/14 / AD_END START 
+> CALLBACK AUCTION E1/A1/14 / AD_END END 
+> CALLBACK ACTION E1/A1/14 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/14 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/14 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/14 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/14 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/14 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/14 / Act_START START  
+> CALLBACK ACTION E1/A1/14 / Act_START END  
+> CALLBACK ACTION E1/A1/14 / Act_END START  
+> CALLBACK ACTION E1/A1/14 / Act_END END  
+> CALLBACK VER DECL E1/A1/14 FROM G3 START 
+> CALLBACK VER DECL E1/A1/14 FROM G3 END 
+> CALLBACK VER DECL E1/A1/14 FROM G2 START 
+> CALLBACK VER DECL E1/A1/14 FROM G2 END 
+> CALLBACK VER DECL E1/A1/14 FROM G1 START 
+> CALLBACK VER DECL E1/A1/14 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/15 / AD_START START 
+> CALLBACK AUCTION E2/A2/15 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/15 START 
+> CALLBACK AUCTION DECL E2/A2/15 END 
+> CALLBACK AUCTION DECL E2/A2/15 START 
+> CALLBACK AUCTION DECL E2/A2/15 END 
+> CALLBACK AUCTION DECL E2/A2/15 START 
+> CALLBACK AUCTION DECL E2/A2/15 END 
+> CALLBACK AUCTION E2/A2/15 / AD_END START 
+> CALLBACK AUCTION E2/A2/15 / AD_END END 
+> CALLBACK ACTION E2/A2/15 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/15 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/15 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/15 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/15 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/15 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/15 / Act_START START  
+> CALLBACK ACTION E2/A2/15 / Act_START END  
+> CALLBACK ACTION E2/A2/15 / Act_END START  
+> CALLBACK ACTION E2/A2/15 / Act_END END  
+> CALLBACK VER DECL E2/A2/15 FROM G3 START 
+> CALLBACK VER DECL E2/A2/15 FROM G3 END 
+> CALLBACK VER DECL E2/A2/15 FROM G2 START 
+> CALLBACK VER DECL E2/A2/15 FROM G2 END 
+> CALLBACK VER DECL E2/A2/15 FROM G1 START 
+> CALLBACK VER DECL E2/A2/15 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/16 / AD_START START 
+> CALLBACK AUCTION E1/A1/16 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/16 START 
+> CALLBACK AUCTION DECL E1/A1/16 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/16 START 
+> CALLBACK AUCTION DECL E1/A1/16 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/16 START 
+> CALLBACK AUCTION DECL E1/A1/16 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/16 / AD_END START 
+> CALLBACK AUCTION E1/A1/16 / AD_END END 
+> CALLBACK ACTION E1/A1/16 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/16 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/16 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/16 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/16 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/16 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/16 / Act_START START  
+> CALLBACK ACTION E1/A1/16 / Act_START END  
+> CALLBACK ACTION E1/A1/16 / Act_END START  
+> CALLBACK ACTION E1/A1/16 / Act_END END  
+> CALLBACK VER DECL E1/A1/16 FROM G3 START 
+> CALLBACK VER DECL E1/A1/16 FROM G3 END 
+> CALLBACK VER DECL E1/A1/16 FROM G2 START 
+> CALLBACK VER DECL E1/A1/16 FROM G2 END 
+> CALLBACK VER DECL E1/A1/16 FROM G1 START 
+> CALLBACK VER DECL E1/A1/16 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/17 / AD_START START 
+> CALLBACK AUCTION E2/A2/17 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/17 START 
+> CALLBACK AUCTION DECL E2/A2/17 END 
+> CALLBACK AUCTION DECL E2/A2/17 START 
+> CALLBACK AUCTION DECL E2/A2/17 END 
+> CALLBACK AUCTION DECL E2/A2/17 START 
+> CALLBACK AUCTION DECL E2/A2/17 END 
+> CALLBACK AUCTION E2/A2/17 / AD_END START 
+> CALLBACK AUCTION E2/A2/17 / AD_END END 
+> CALLBACK ACTION E2/A2/17 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/17 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/17 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/17 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/17 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/17 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/17 / Act_START START  
+> CALLBACK ACTION E2/A2/17 / Act_START END  
+> CALLBACK ACTION E2/A2/17 / Act_END START  
+> CALLBACK ACTION E2/A2/17 / Act_END END  
+> CALLBACK VER DECL E2/A2/17 FROM G3 START 
+> CALLBACK VER DECL E2/A2/17 FROM G3 END 
+> CALLBACK VER DECL E2/A2/17 FROM G2 START 
+> CALLBACK VER DECL E2/A2/17 FROM G2 END 
+> CALLBACK VER DECL E2/A2/17 FROM G1 START 
+> CALLBACK VER DECL E2/A2/17 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION DECL E1/A1/18 START 
+> CALLBACK AUCTION DECL E1/A1/18 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/18 / AD_START START 
+> CALLBACK AUCTION E1/A1/18 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/18 START 
+> CALLBACK AUCTION DECL E1/A1/18 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/18 START 
+> CALLBACK AUCTION DECL E1/A1/18 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/18 / AD_END START 
+> CALLBACK AUCTION E1/A1/18 / AD_END END 
+> CALLBACK ACTION E1/A1/18 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/18 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/18 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/18 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/18 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/18 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/18 / Act_START START  
+> CALLBACK ACTION E1/A1/18 / Act_START END  
+> CALLBACK ACTION E1/A1/18 / Act_END START  
+> CALLBACK ACTION E1/A1/18 / Act_END END  
+> CALLBACK VER DECL E1/A1/18 FROM G1 START 
+> CALLBACK VER DECL E1/A1/18 FROM G1 END 
+> CALLBACK VER DECL E1/A1/18 FROM G3 START 
+> CALLBACK VER DECL E1/A1/18 FROM G3 END 
+> CALLBACK VER DECL E1/A1/18 FROM G2 START 
+> CALLBACK VER DECL E1/A1/18 FROM G2 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/19 / AD_START START 
+> CALLBACK AUCTION E2/A2/19 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/19 START 
+> CALLBACK AUCTION DECL E2/A2/19 END 
+> CALLBACK AUCTION DECL E2/A2/19 START 
+> CALLBACK AUCTION DECL E2/A2/19 END 
+> CALLBACK AUCTION DECL E2/A2/19 START 
+> CALLBACK AUCTION DECL E2/A2/19 END 
+> CALLBACK AUCTION E2/A2/19 / AD_END START 
+> CALLBACK AUCTION E2/A2/19 / AD_END END 
+> CALLBACK ACTION E2/A2/19 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/19 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/19 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/19 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/19 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/19 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/19 / Act_START START  
+> CALLBACK ACTION E2/A2/19 / Act_START END  
+> CALLBACK ACTION E2/A2/19 / Act_END START  
+> CALLBACK ACTION E2/A2/19 / Act_END END  
+> CALLBACK VER DECL E2/A2/19 FROM G3 START 
+> CALLBACK VER DECL E2/A2/19 FROM G3 END 
+> CALLBACK VER DECL E2/A2/19 FROM G2 START 
+> CALLBACK VER DECL E2/A2/19 FROM G2 END 
+> CALLBACK VER DECL E2/A2/19 FROM G1 START 
+> CALLBACK VER DECL E2/A2/19 FROM G1 END 
+> CALLBACK EVENT E1 START 
+> CALLBACK EVENT E1 END 
+> CALLBACK AUCTION E1/A1/20 / AD_START START 
+> CALLBACK AUCTION E1/A1/20 / AD_START END 
+> CALLBACK AUCTION DECL E1/A1/20 START 
+> CALLBACK AUCTION DECL E1/A1/20 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/20 START 
+> CALLBACK AUCTION DECL E1/A1/20 END / NOT AUCTIONER
+> CALLBACK AUCTION DECL E1/A1/20 START 
+> CALLBACK AUCTION DECL E1/A1/20 END / NOT AUCTIONER
+> CALLBACK AUCTION E1/A1/20 / AD_END START 
+> CALLBACK AUCTION E1/A1/20 / AD_END END 
+> CALLBACK ACTION E1/A1/20 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/20 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/20 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/20 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/20 / READY_for_Act START  
+> CALLBACK ACTION E1/A1/20 / READY_for_Act END  
+> CALLBACK ACTION E1/A1/20 / Act_START START  
+> CALLBACK ACTION E1/A1/20 / Act_START END  
+> CALLBACK ACTION E1/A1/20 / Act_END START  
+> CALLBACK ACTION E1/A1/20 / Act_END END  
+> CALLBACK VER DECL E1/A1/20 FROM G2 START 
+> CALLBACK VER DECL E1/A1/20 FROM G2 END 
+> CALLBACK VER DECL E1/A1/20 FROM G3 START 
+> CALLBACK VER DECL E1/A1/20 FROM G3 END 
+> CALLBACK VER DECL E1/A1/20 FROM G1 START 
+> CALLBACK VER DECL E1/A1/20 FROM G1 END 
+> CALLBACK EVENT E2 START 
+> CALLBACK EVENT E2 END 
+> CALLBACK AUCTION E2/A2/21 / AD_START START 
+> CALLBACK AUCTION E2/A2/21 / AD_START END 
+> CALLBACK AUCTION DECL E2/A2/21 START 
+> CALLBACK AUCTION DECL E2/A2/21 END 
+> CALLBACK AUCTION DECL E2/A2/21 START 
+> CALLBACK AUCTION DECL E2/A2/21 END 
+> CALLBACK AUCTION DECL E2/A2/21 START 
+> CALLBACK AUCTION DECL E2/A2/21 END 
+> CALLBACK AUCTION E2/A2/21 / AD_END START 
+> CALLBACK AUCTION E2/A2/21 / AD_END END 
+> CALLBACK ACTION E2/A2/21 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/21 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/21 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/21 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/21 / READY_for_Act START  
+> CALLBACK ACTION E2/A2/21 / READY_for_Act END  
+> CALLBACK ACTION E2/A2/21 / Act_START START  
+> CALLBACK ACTION E2/A2/21 / Act_START END  
+> CALLBACK ACTION E2/A2/21 / Act_END START  
+> CALLBACK ACTION E2/A2/21 / Act_END END  
+> CALLBACK VER DECL E2/A2/21 FROM G3 START 
+> CALLBACK VER DECL E2/A2/21 FROM G3 END 
+> CALLBACK VER DECL E2/A2/21 FROM G1 START 
+> CALLBACK VER DECL E2/A2/21 FROM G1 END 
+> CALLBACK VER DECL E2/A2/21 FROM G2 START 
+> CALLBACK VER DECL E2/A2/21 FROM G2 END 
+

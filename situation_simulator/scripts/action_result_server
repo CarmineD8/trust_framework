@@ -1,0 +1,276 @@
+#!/usr/bin/env python3
+import os
+from pathlib import Path
+from datetime import datetime
+
+from numpy import random
+from sim_srv.srv import ActionResult,ActionResultResponse
+from sim_msg.msg import Agent_Action
+from threading import RLock
+import signal
+import errno
+
+import rospy
+import sys
+
+from random import uniform
+
+AGENT_SPACE = 20
+NO_IDENTETOR = True
+
+sim_actions_list = list()
+actual_result_dict = dict()
+actual_result_list = list()
+succ_dict = dict()
+ver_dict = dict()
+lock = RLock()
+random_seed_dict = dict()
+use_seed = False
+res_dict = dict()
+
+
+class VerRates():
+    def __init__(self, other_agent_ID, rateTT, rateFF):
+        self.agent_ID = other_agent_ID
+        self.ver_rates = [rateTT , rateFF]
+
+class AgentRates():
+    
+    def __init__(self,agent_ID, success_rate, verification_rates =[]):
+        self.agent_ID = agent_ID 
+        self.succ_rate = success_rate
+        self.ver_rates = list(verification_rates)
+
+class SimAction():
+    
+    def __init__(self,action_ID, tr_event, rates = []):
+        self.action_ID = action_ID
+        self.triggering_event = tr_event
+        self.agent_rates = list(rates)
+
+def handle_res_verification(req):
+    global sim_actions_list, actual_result_dict, actual_result_list, ver_dict, lock
+    auction_data = req.auction_ID.split("/")
+        
+    #Check if there is an entry for the verifying agent
+    ver_rates = None
+
+    ver_rates = ver_dict[auction_data[1], auction_data[0], req.ver_agent_ID, req.perf_agent_ID] 
+    with lock:
+        if req.auction_ID in actual_result_list: 
+            perceived_result = compute_perceived_result(req.auction_ID, req.ver_agent_ID, actual_result_dict[req.auction_ID],ver_rates)  
+            #print(perceived_result)
+        else:
+            print(identetor(req.ver_agent_ID,  "<RS> ERROR. %s asked for result of [%s], but there is no entry." %(req.ver_agent_ID, req.auction_ID) ))
+            print(identetor(req.ver_agent_ID,  actual_result_dict))
+            #perceived_result = str(False)
+            #print(Style.RESET_ALL)
+
+
+    print(identetor(req.ver_agent_ID,  "<RS> %s VERIFICATION %s -> %s(%s) -> %s [%0.2f, %0.2f]"
+                                        %(req.ver_agent_ID, req.auction_ID, auction_data[1], req.perf_agent_ID, perceived_result, ver_rates[0], ver_rates[1])))
+    #print(Style.RESET_ALL)
+    return ActionResultResponse(perceived_result)
+
+def action_callback(msg):
+    global sim_actions_list, actual_result_dict, actual_result_list, succ_dict, lock, random_seed_dict
+
+    if msg.state == "Act_START":
+        if len(actual_result_list) > 5*len(sim_actions_list):
+            actual_result_list.pop(0)
+
+        auction_data = msg.auction_ID.split("/")
+        random_seed_dict[msg.auction_ID] = {}
+        #Check if the request has already an entry in the actual result list
+        #In order to compute an actual result, the server will search for the actual success rate for the agent in its sim action list
+        success_rate =  succ_dict[auction_data[1], auction_data[0], msg.performer_ID]
+        roll = uniform(0.0,1.0)
+        if roll > success_rate or success_rate == 0.0:
+            actual_result = False
+        else:
+            actual_result = True
+        with lock:
+            actual_result_list.append(msg.auction_ID)
+            actual_result_dict[msg.auction_ID] = actual_result       
+        print(identetor(msg.performer_ID,  "<RS> %s -> %s(%s) [%0.2f] RESULT: %s." 
+                %(msg.auction_ID, auction_data[1], msg.performer_ID, success_rate, str(actual_result))))
+            
+def compute_perceived_result(auction_ID, agent_ID, actual_result, ver_rates):
+    global use_seed, res_dict, random_seed_dict
+
+    if use_seed:
+        perceived_result = res_dict[auction_ID][agent_ID]
+        if perceived_result == "T":
+            random_seed_dict[auction_ID].update({agent_ID : "T"})
+            perceived_result = "True"
+        elif perceived_result == "F":
+            random_seed_dict[auction_ID].update({agent_ID : "F"})
+            perceived_result = "False"
+        else:
+            print("<RS> ERROR. Something went wrong while using the random seed")
+
+        return perceived_result
+
+    else:
+        verRateTT = ver_rates[0]
+        verRateFF = ver_rates[1]
+        #Check if the result of the action is positive, the verification rate of recogninzing success when it actually happened is used
+        if actual_result == True:
+            if uniform(0.0,1.0) > verRateTT or verRateTT == 0.0:
+                perceived_result = False
+            else: 
+                perceived_result = True
+        else:
+            #otherwise the verification rate of recogninzing failure when it actually happened is used
+            if uniform(0.0,1.0) > verRateFF or verRateFF == 0.0: 
+                perceived_result = True
+            else:
+                perceived_result = False
+
+        if perceived_result == True:
+            random_seed_dict[auction_ID].update({agent_ID : "T"})
+        else:
+            random_seed_dict[auction_ID].update({agent_ID : "F"})
+        return str(perceived_result)
+
+def print_sim_actions_list(sim_actions_list): 
+    print_string = ""
+    string = " SERVER RATES "
+    print_string = print_string + string.center(100,"=") + "\n"
+    for x in sim_actions_list:
+        string = "<ACTION> " + x.action_ID +" during <EVENT> " + x.triggering_event
+        print_string = print_string + string.center(100,"_") + "\n"
+        for y in x.agent_rates:
+            string = "\t-> " + y.agent_ID
+            print_string = print_string + (string) + "\n"
+            print_string = print_string + "\t\t\t Success Rate = %0.2f,\n"  %(y.succ_rate) + "\n"
+            for z in y.ver_rates:
+            
+                verRateTT = z.ver_rates[0]
+                verRateFT = 1.0 - z.ver_rates[0]
+                verRateFF = z.ver_rates[1]
+                verRateTF = 1.0 - z.ver_rates[1]    
+                if z.agent_ID == y.agent_ID:
+                    print_string = print_string + ("\t\t\t Verification Rates (on itself):  \n \t\t\t || VerR(T|T) %0.2f VerR(F|T) %0.2f  |  VerR(F|F) %0.2f VerR(T|F) %0.2f ||" 
+                            %(verRateTT, verRateFT, verRateFF, verRateTF) + "\n")
+                else:
+                    print_string = print_string + ("\t\t\t Verification Rates (on %s): \n \t\t\t || VerR(T|T) %0.2f VerR(F|T) %0.2f  |  VerR(F|F) %0.2f VerR(T|F) %0.2f ||" 
+                            %(z.agent_ID, verRateTT,verRateFT,verRateFF,verRateTF) + "\n")
+                print_string = print_string + ("\n") 
+    string = ""
+    print_string = print_string + string.center(100,"=") + "\n"
+    print(print_string)
+
+def StringToAction(event_string):
+    ver_rates_list = []
+    rates_list = []
+
+    action_data = event_string.split(">") 
+    triggering_event_ID = action_data[0]
+    action_ID = action_data[1]
+    rates_string = action_data[2].split("#")
+    for x in rates_string:
+        rates_data = x.split("|")
+        agent_ID = rates_data[0].split(";")[0]
+        succ_rate = float(rates_data[0].split(";")[1])
+        ver_rates_list = []
+        for y in range(1,len(rates_data)):
+            data = rates_data[y]
+            ver_rate_data = data.split(";")
+            ver_rate = VerRates(ver_rate_data[0],float(ver_rate_data[1]),float(ver_rate_data[2]))
+            ver_rates_list.append(ver_rate)
+        rates_list.append(AgentRates(agent_ID, succ_rate, ver_rates_list))
+    
+    return SimAction(action_ID,triggering_event_ID, rates_list)
+
+def dictionifier(sim_actions_list):
+        
+    succ_rates_dict = {}
+    ver_rates_dict = {}
+    for x in sim_actions_list:
+        for y in x.agent_rates:
+            succ_rates_dict[x.action_ID, x.triggering_event, y.agent_ID] = y.succ_rate 
+            for z in y.ver_rates: 
+                ver_rates_dict[x.action_ID, x.triggering_event, y.agent_ID, z.agent_ID] =  z.ver_rates
+                
+
+    return succ_rates_dict, ver_rates_dict
+
+def identetor(ID, string):
+    global AGENT_SPACE, NO_IDENTETOR
+    if NO_IDENTETOR:
+        return string
+    formatted_string = "|"
+
+    while len(string) > AGENT_SPACE:
+        for x in range(0,10):
+            if x == (int(ID.strip("G"))-1):
+                formatted_string = formatted_string + string[:AGENT_SPACE] + "|"
+            else:
+                formatted_string = formatted_string +" "*AGENT_SPACE + "|"
+        formatted_string = formatted_string + "\n|"
+        string = string[AGENT_SPACE:]
+    if string != "":
+        string = string + " "*(AGENT_SPACE - len(string))
+        for x in range(0,10):
+            if x == (int(ID.strip("G"))-1):
+                formatted_string = formatted_string + string + "|"  
+            else:
+                formatted_string = formatted_string +" "*AGENT_SPACE + "|" 
+
+        formatted_string = formatted_string 
+    return formatted_string
+
+def main(args):
+    global sim_actions_list, actual_result_dict, actual_result_list, succ_dict, ver_dict, res_dict, use_seed
+
+    rospy.init_node('action_result_server')
+
+    rospy.loginfo("<ResS> Initializing Action Results Server")
+
+    #SUBSCRIBERS
+    action_sub = rospy.Subscriber("/result_server", Agent_Action, action_callback, queue_size = 10000)# , tcp_nodelay= True)
+
+    #SERVICE
+    s = rospy.Service('action_result', ActionResult, handle_res_verification, buff_size= 10000)
+                                                                                                                     #VERIFICATION RATES
+    sim_actions_list = []
+    #print_sim_actions_list(sim_actions_list)
+    path = Path(__file__).parent / 'Initialization_Data/InitializationFile.txt'
+    f = open(path, "r")
+    for line in f:
+        if line[0] == "@":
+            sim_actions_list.append(StringToAction(line.strip("@")))   
+    f.close()
+    #print_sim_actions_list(sim_actions_list)
+    [succ_dict, ver_dict] = dictionifier(sim_actions_list)
+
+    
+    if args[1] == "None":
+        use_seed = False
+        res_dict = {}
+    else:
+        all_data = ""
+        f = open(args[1], "r")
+        for line in f:
+            all_data += line   
+        f.close()
+        use_seed = True
+        res_dict = eval(all_data)
+        print(str(res_dict))
+
+    r = rospy.Rate(1000) # 1hz
+    while not rospy.is_shutdown():
+        try:
+            r.sleep()
+        except KeyboardInterrupt:
+            rospy.loginfo("Shutting down Result Server")
+        
+if __name__ == "__main__":
+    args = rospy.myargv( argv = sys.argv)
+    if len(args) != 2:
+        print("ERROR: intialization values are incorrect")
+        sys.exit(1)
+
+    main(args)
+

@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+
+import sys
+import rospy
+from std_msgs.msg import String
+from trust_agent import Rates, TrustAgent, TrustMetric
+        
+def main(args):
+
+    rospy.init_node(args[1])
+    
+    plans_dict = dict()
+    actions_dict = dict()
+    trust_database = dict()
+
+    ID = args[1]
+    rospy.loginfo("Starting Agent " + args[1])
+    #List of all the previously encountered agents
+    if args[2] == "None":
+        known_agents = []
+    else:
+        known_agents = list(StringToKnownAgents(args[2]))
+    #List of all the actions 
+                            #ACTION ID            #TRIGGERING EVENT           #ESTIMATED SUCCESS AND VERIFICATION RATES FOR EACH AGENT (including the agent itself) 
+    if args[3] == "None":
+        plans_dict = {}
+        actions_dict = {}
+    else:
+        pl_dict, act_dict = StringToActions(args[3])
+
+        plans_dict.update(pl_dict)
+        actions_dict.update(act_dict)
+
+    if args[4] == "None":
+        trust_database = {}
+    else:
+        tr_db  = StringToTrustMetrics(args[4]) 
+
+        trust_database.update(tr_db)
+
+    if args[5] == "None":
+        behaviour = None 
+        disposition = None
+    else:
+        behaviour = args[5].split("|")[0]
+        disposition = args[5].split("|")[1]
+
+    if args[6] == "None":
+        generic_agent = TrustAgent(ID, known_agents, plans_dict, actions_dict, trust_database, behaviour, disposition )
+    else:
+        IP = args[6].split(":")[0]  
+        port_num = int(args[6].split(":")[1])
+        generic_agent = TrustAgent(ID, known_agents, plans_dict, actions_dict, trust_database, behaviour, disposition, IP, port_num)
+
+    rate = rospy.Rate(50) # 25/sec 
+
+    while not rospy.is_shutdown():
+        try:
+            #rospy.spin()
+            generic_agent.run()
+            rate.sleep()
+        except KeyboardInterrupt:
+            rospy.loginfo("Shutting down Agent" + ID)
+    
+
+def StringToKnownAgents(string): #Method to cast the known agent string passed as argument
+    known_agents = string.split("_")  
+    return known_agents
+
+def StringToActions(string): #Method to cast the actions initialization string to a list of actions
+    plans_dict = dict()
+    actions_dict = dict()
+
+    all_actions = string.split("#")
+    for string_action in all_actions:
+        action_data = string_action.split(">")
+        event = action_data[0]
+        plans_dict[event] = []
+        action_IDs = action_data[1].split("|")
+        action_rates = action_data[2].split("|")
+        for x in range(0,len(action_IDs)):
+            plans_dict[event].append(action_IDs[x])
+            if action_IDs[x] not in actions_dict.keys():
+                rates = StringToRates(action_rates[x])
+                actions_dict[action_IDs[x]] = rates
+
+    return plans_dict,actions_dict
+
+def StringToTrustMetrics(string):
+    trust_metrics_dict = dict()
+    trust_database = dict()
+
+    trust_metrics = string.split("#")
+    for trust_metric in trust_metrics:
+        tm_data = trust_metric.split(">")
+        agent_ID = tm_data[0]
+        exp_data_list = tm_data[3].split("|")
+        trust_database[agent_ID] = dict()
+
+        for elem in exp_data_list:
+            exp_data = elem.split(";")
+            evaction = exp_data[0]
+            trust_database[agent_ID][evaction] = TrustMetric(exp_data[0], float(exp_data[1]), int(exp_data[2]), int(exp_data[3]), 
+                                                                float(exp_data[4]), float(exp_data[5])) 
+                                                             
+       
+       
+    return trust_metrics_dict, trust_database
+
+def StringToRates(rates): #Method to cast a properly formatted string into a Rates() list
+        declared_rates = []
+        agent_rates = rates.split("/")    
+                
+        for x in agent_rates:
+            temp = x.split(";")
+            decl_rate = Rates(temp[0],float(temp[1]),[float(temp[2]),float(temp[3])])
+            declared_rates.append(decl_rate)
+        return declared_rates
+
+if __name__ == "__main__":
+    args = rospy.myargv( argv = sys.argv)
+    if len(args) != 7:
+        print("ERROR: intialization values are incorrect")
+        sys.exit(1)
+    main(args)

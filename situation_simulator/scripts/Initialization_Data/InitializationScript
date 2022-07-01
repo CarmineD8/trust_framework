@@ -1,0 +1,517 @@
+#!/usr/bin/env python3
+
+import sys,random
+from random import choice
+import sys  
+import tkinter as tk 
+        
+
+class Action(): #Class to store an action data by specifying its ID, its triggering event and the list of rates for such action for each known agent 
+                #(including the agent itself)     
+    def __init__(self,action_ID, given_rates = []):
+        #action id
+        self.ID = action_ID
+        #agent-indexed list about the rates of success and verification of the action 
+        self.rates = list(given_rates)
+
+class Event():
+    def __init__(self, event_ID, actions_list = []): #Action("None", [ Rate("No-one", 0.0, [1.0, 1.0])]) ]):
+        self.ID = event_ID
+        self.actions_list = list(actions_list)
+
+class SimAction:
+	def __init__(self, action_ID, action_time_lengths = []):
+		self.ID = action_ID
+		self.action_time_lengths = list(action_time_lengths)	
+
+class SimEvent:
+    def __init__(self, event_ID, auctioner_ID, related_actions = []):
+        self.ID = event_ID
+        self.auctioner_ID = auctioner_ID
+        self.related_actions =  list(related_actions)
+        
+def main(args):
+
+    print("Welcome to the generic agents intializer! \n The generic agents will be named G1, G2, etc")
+    #string for launch file initialization
+    launch_init_string = ""
+    #string for simulator 
+    event_list = list()
+    random_flag = False
+    COUNTER = -1
+
+  
+    #Prompt for the number of generic agents
+    agents_count = input(" \n Please, enter the number of generic agents you want to initialize: ")
+    while agents_count.isnumeric() == False:
+        agents_count = input(" \n ERROR, please enter an integer: ")    
+    agents_count = int(agents_count)
+
+    check = "y"
+    breakFlag = False
+    
+    while check not in ["n" ,"N"]:
+        if check in ["y", "Y"]:
+            event_ID = input(" \n Please, enter an event ID: ") 
+            auctioner = "G" + str(getAuctionerID(event_ID, agents_count))
+            
+            for x in event_list:
+                if x.ID == event_ID:
+                    print("ERROR, event %s is already in the list, retry." %event_ID)
+                    breakFlag = True
+                    break
+            if breakFlag == True:
+                breakFlag = False
+                continue
+            
+            COUNTER = COUNTER +1
+            action_ID = input(" \n Please, enter an action triggered during the event that you want to initialize: ")  
+            event_list.append(SimEvent(event_ID, auctioner, [SimAction(action_ID)]))
+            
+            check = input(" \n Do you want to insert another action for event %s? Y/N: " %event_ID)
+            while check not in  ["n" ,"N"]:
+                if check in ["y", "Y"]:
+                    action_ID = input(" \n Please, enter a different action ID: ")
+                    for x in event_list: # Check if the given action triggered by the given event is already present
+                        for y in x.related_actions:
+                            if y.ID == action_ID and x.ID == event_ID:                            
+                                print("ERROR, action %s is already in the event %s list, retry." %(action_ID, event_ID))
+                                printEventList(event_list)
+                                breakFlag = True
+                                break
+                        if breakFlag == True:
+                            break
+                    if breakFlag == True:
+                        breakFlag = False
+                        continue 
+
+
+                    event_list[COUNTER].related_actions.append(SimAction(action_ID))
+
+                check = input(" \n Please, type Y to add a new action to event %s or N to continue: " %event_ID)
+            
+            printEventList(event_list)
+        
+        check = input("\n Do you want to insert another event? Y/N:")
+        
+    check = ""
+    while check not in  ["n" ,"N"]:
+        check = input("\n Do you want to use a random generation pattern for white cells ? Y/N \n")
+        if check in ["y", "Y"]:
+            random_flag = True
+            break
+        elif check in ["n", "N"]:
+            random_flag = False
+            break
+        else:
+            check = input("\n ERROR, Enter Y or N. Do you want to use a random generation pattern for white cells? \n")
+      
+    print("####### LAUNCH FILE PHASE #######")
+
+    # fixed_rates_agent_list = list(getFixedAgentsID(event_list, agents_count))
+    # print(fixed_rates_agent_list)
+
+    #Launch file initialization phase
+    for agent in range(1,agents_count+1):
+        node_name = "G" + str(agent)
+        pkg = "trusting_agents"
+        node_type = "generic_trusting_agent"
+        output = "screen" 
+        estimated_rates = ""
+        known_agents_string = ""
+        trust_metric_string = "None"
+        beh_disp_arg = ""
+        IP_port_arg = ""
+        known_agents = []        
+        
+        estimated_rates, known_agents , beh_disp_arg , IP_port_arg = enter_launch_rates_GUI(agent, agents_count, event_list, random_flag)
+
+        for agent_ID in sorted(known_agents):
+            known_agents_string = known_agents_string + agent_ID + "_"
+
+        known_agents_string = known_agents_string.strip("_")     
+        if known_agents_string == "":
+            known_agents_string = "None"
+        if estimated_rates == "":
+            estimated_rates = "None"
+        args = node_name + " " + known_agents_string + " " + estimated_rates + " " + trust_metric_string + " " + beh_disp_arg + " " + IP_port_arg
+        launch_init_string = launch_init_string + "<node name = \"%s\" pkg = \"%s\" type = \"%s\" output = \"%s\" \n\t args =\"%s\" />" %(node_name, pkg, node_type, output, args) + "\n\n"
+ 
+    file_name = input("\n\n <<><><><><><><><><><><><><><><><><><><><><><><><><><><><>> \n\n Please, enter a name for the launcher file:\n")
+    file_name = file_name + ".launch"
+    f = open("/root/ros_ws/src/trusting_agents/launch/" + file_name, "w")
+    f.write("<launch> \n<!-- SIMULATOR INITIALIZATION --> \n<node name = \"simulator_node\" pkg = \"situation_simulator\" type = \"simulator_node\" output = \"screen\"/>\n<node name = \"action_result_server\" pkg = \"situation_simulator\" type = \"action_result_server\" output = \"screen\"/>\n<!-- AGENTS INITIALIZATION -->\n" + launch_init_string + "\n</launch>")
+    f.close()
+    
+    #Simulator initialization phase
+
+    print("####### SIMULATOR PHASE #######")
+
+    printEventList(event_list)
+    print("\n")
+
+    #Creating the initialization data for the event management part of the simulator
+    event_manager_string = ""
+    for x in event_list:
+        event_manager_string = event_manager_string + "!" + x.ID + ">" + x.auctioner_ID + ">"
+        for y in x.related_actions:
+            event_manager_string = event_manager_string + y.ID + "#"
+        event_manager_string = event_manager_string.strip("#") + "\n"   
+
+    simulator_rates = ""
+    for event in event_list:     
+        for action in event.related_actions:
+            rates_data = enter_sim_rates_GUI(agents_count, event.ID, action.ID)
+            simulator_rates += rates_data + "\n"
+
+    file_name = input("\n\n <<><><><><><><><><><><><><><><><><><><><><><><><><><><><>> \n\n Please, enter a name for the simulator rates file:\n")
+    file_name = file_name + ".txt"
+    f = open(file_name, "w")
+    #f.write(sim_action_string + "\n\n" + all_event_string + "\n\n" + super_string)
+    f.write(event_manager_string + "\n" + simulator_rates)
+    f.close()
+
+    f = open("InitializationFile.txt", "w")
+    f.write(event_manager_string + "\n" + simulator_rates)
+    f.close()
+          
+def getAuctionerID(event_ID, agents_count):
+    flag_not_int = True
+    check = -1
+    while(flag_not_int or check not in range(1,agents_count+1)):
+        try:
+            flag_not_int = False
+            check = int(input(" \n Please, enter the auctioner for the actions during the event %s: \n Enter 1 for G1, 2 for G2, ..., %d for G%d. \n" %(event_ID, agents_count, agents_count)))
+        except ValueError:
+            flag_not_int = True
+                    
+    return check   
+
+def printEventList(event_list):
+    print("EVENT LIST:\n")
+    for x in event_list:
+        print("->Event %s auctioned by %s: \n" %(x.ID, x.auctioner_ID))
+        for y in x.related_actions:
+            print("\t -> " + y.ID, end=": ")
+            print(y.action_time_lengths)
+            print("\n")
+    
+def enter_launch_rates_GUI(agent_ID, nAgents, event_list, random_flg = True):
+    global master, estimated_rates, known_agents, IP_port_arg, beh_disp_arg, random_flag, actions_IDs, behavior_data, disp_data
+
+    random_flag = random_flg
+    agent = "G%d" %agent_ID
+    estimated_rates = ""
+    IP_port_arg = ""
+    behavior_data = ""
+    disp_data = ""
+    beh_disp_arg = ""
+    known_agents = []
+    actions_IDs = []
+        
+    for event in event_list:     
+        for action in event.related_actions:
+            if action.ID not in actions_IDs:
+                actions_IDs.append(action.ID)
+
+    nActions = len(actions_IDs)
+
+    # creating a new tkinter window 
+    master = tk.Tk() 
+
+    # assigning a title 
+    master.title(agent + " ESTIMATED RATES") 
+
+    # specifying geomtery for window size 
+    master.geometry("5000x500")
+
+    # declaring objects for entering data 
+    rates_entries = []
+    variable = tk.StringVar(master)
+    variable.set('Select')
+    def beh_callback(selection):
+        global behavior_data
+        behavior_data = selection
+    behavior = tk.OptionMenu(master, variable, 'Individualist', 'Collectivist', command=beh_callback)
+    
+    variable_disp = tk.StringVar(master)
+    variable_disp.set('Select')
+    def disp_callback(selection):
+        global disp_data
+        disp_data = selection
+    disposition = tk.OptionMenu(master, variable_disp, 'Realist', 'Optimist', 'Pessimist', command=disp_callback)
+
+    ip_port = tk.Entry(master)
+
+    for i in range(0,nActions):
+        for j in range(0,nAgents):
+            rates_entries.append(tk.Entry(master))
+
+    tk.Label(master, text="Actions/Agents").grid(row=0, column=0) 
+    # function to display the total subject 
+    # credits total credits and SGPA according 
+    # to grades entered 
+
+    for i in range(1,nActions +1):
+        tk.Label(master, text=(actions_IDs[i-1]) ).grid(row=i, column=0)
+
+    for j in range(1,nAgents +1):
+        tk.Label(master, text=("G"+ str(j)) ).grid(row=0, column=j) 
+
+    row_index = 0
+    for i in range(0,nActions):
+        for j in range(0, nAgents):
+            index = i*nAgents+j
+            row_index = i+1
+            cl_index = j+1
+            rates_entries[index].grid(row=row_index, column=cl_index, ipadx= 0, ipady=0) 
+    row_index += 2
+    tk.Label(master, text=("Behavior")).grid(row=row_index, column=1)    
+    tk.Label(master, text=("Disposition")).grid(row=row_index, column=2)    
+    tk.Label(master, text=("IP / Port Number")).grid(row=row_index, column=3)
+    row_index += 1
+    behavior.grid(row=row_index, column=1)
+    disposition.grid(row =row_index, column=2)
+    ip_port.grid(row =row_index, column=3)
+
+    def store_data():
+        global master, estimated_rates, known_agents, IP_port_arg, beh_disp_arg, random_flag, actions_IDs, behavior_data, disp_data
+
+        estimated_rates = ""
+        known_agents = []
+        IP_port_arg = ""
+        beh_disp_arg = ""
+        temp = {}
+        counter = -1
+
+        for i in range(0,nActions):
+            action_rates = ""
+            for j in range(0, nAgents):
+                index = i*nAgents+j
+                if rates_entries[index].get() != "":
+                    data = rates_entries[index].get().split()
+                    if len(data) != 3:
+                        print("ERROR TOO MANY ARGUMENTS IN CELL(%d,%d). EX: 0.05 1.00 0.75" %(counter+1, j+1))
+                        return
+                    else:
+                        succ_rate = float(data[0])
+                        ver_rateTT = float(data[1])
+                        ver_rateFF = float(data[2])
+                        action_rates += "G%d;%0.2f;%0.2f;%0.2f/" %(j+1, succ_rate, ver_rateTT, ver_rateFF)
+                        agent_ID = "G%d" %(j+1) 
+                        if agent_ID not in known_agents:
+                            known_agents.append(agent_ID)
+                else:
+                    if random_flag:
+                        succ_rate = random.uniform(0.0,1.0)
+                        ver_rateTT = random.uniform(0.0,1.0)
+                        ver_rateFF = random.uniform(0.0,1.0)
+                        action_rates += "G%d;%0.2f;%0.2f;%0.2f/" %(j+1, succ_rate, ver_rateTT, ver_rateFF)
+                        agent_ID = "G%d" %(j+1) 
+                        if agent_ID not in known_agents:
+                            known_agents.append(agent_ID)
+            #If no agent has given rates and the random flag is off, then the agent won't update the event string
+            if action_rates != "":
+                temp[actions_IDs[i]] = action_rates
+        print(len(temp.keys()))
+
+        for event in event_list:            
+            action_IDs_string = ""   
+            rates_string = "" 
+            for action in event.related_actions:
+                if action.ID not in temp.keys():
+                    print("ERROR!!!!!!!!!!!!!!!!")                    
+                else:
+                    action_IDs_string = action_IDs_string + action.ID + "|" 
+                    rates_string = rates_string + temp[action.ID].strip("/") + "|"
+            
+            if action_IDs_string != "":     
+                action_IDs_string = action_IDs_string.strip("|")
+                rates_string = rates_string.strip("|")
+                estimated_rates += event.ID + ">" + action_IDs_string + ">" + rates_string + "#"
+        
+        estimated_rates = estimated_rates.strip("#")
+        
+        beh_disp_arg = behavior_data + "|" + disp_data
+        if beh_disp_arg == "|":
+            beh_disp_arg = "None"
+        IP_port_arg = ip_port.get()
+        if IP_port_arg == "":
+            IP_port_arg = "None"
+        master.quit()
+        
+    # button to display all the calculated credit scores and sgpa 
+    button1=tk.Button(master, text="Save", bg="green", command=store_data) 
+    button1.grid(row= nActions+4, column= 1) 
+        
+    master.mainloop() 
+    master.destroy()
+
+    return estimated_rates, known_agents, beh_disp_arg, IP_port_arg
+
+def enter_sim_rates_GUI(nAgents, event_ID, action_ID):
+    global master, rates_string, random_flag
+
+    rates_string = ""
+    action_ID = action_ID
+    
+    # creating a new tkinter window 
+    master = tk.Tk() 
+
+    # assigning a title 
+    master.title(action_ID + " SIMULATOR RATES") 
+
+    # specifying geomtery for window size 
+    master.geometry("5000x500")
+
+    # declaring objects for entering data 
+    ver_rates_entries = []
+    succ_rate_entries = []
+    #declaring entries for verification rates
+    for i in range(0,nAgents):
+        for j in range(0,nAgents):
+            ver_rates_entries.append(tk.Entry(master))
+    #declaring entries for success rates
+    for i in range(0, nAgents):
+        succ_rate_entries.append(tk.Entry(master))
+
+    tk.Label(master, text=(event_ID + "/" + action_ID)).grid(row=0, column=0) 
+    # function to display the total subject 
+    # credits total credits and SGPA according 
+    # to grades entered 
+
+    for i in range(1, nAgents+1):
+        tk.Label(master, text=("G"+ str(i)) ).grid(row=0, column=i) 
+        tk.Label(master, text=("G"+ str(i)) ).grid(row=i, column=0) 
+
+    row_index = 0
+    for i in range(0,nAgents):
+        row_index = i+1
+        for j in range(0, nAgents):
+            index = i*nAgents+j
+            cl_index = j+1
+            ver_rates_entries[index].grid(row=row_index, column=cl_index, ipadx= 0, ipady=0) 
+
+    row_index += 2
+    tk.Label(master, text=(event_ID + "/" + action_ID)).grid(row=row_index, column=0) 
+    for i in range(1, nAgents+1):
+        tk.Label(master, text=("G"+ str(i)) ).grid(row=row_index, column=i) 
+    row_index += 1
+    tk.Label(master, text="Success Rates").grid(row=row_index, column=0) 
+
+    for i in range(0,nAgents):
+        cl_index = i+1
+        succ_rate_entries[i].grid(row=row_index, column=cl_index, ipadx= 0, ipady=0) 
+
+
+    def store_data():
+        global master, rates_string, random_flag
+
+        init = "@" + event_ID + ">" + action_ID + ">"
+
+        rates_data = ""
+        for i in range(0,nAgents):
+            if succ_rate_entries[i].get() != "":
+                rates_data += "G%d;%0.2f|" %(i+1, float(succ_rate_entries[i].get()))
+            else:
+                rates_data += "G%d;-1.00|" %(i+1)
+            for j in range(0, nAgents):
+                if ver_rates_entries[i*nAgents+j].get() != "":
+                    data = ver_rates_entries[i*nAgents+j].get().split()
+                    if len(data) != 2:
+                        print("ERROR IN ARGUMENTS NUMBER IN CELL(%d,%d). EX:1.00 0.75" %(i*nAgents+1, j+1))
+                        return
+                    else:
+                        ver_rateTT = float(data[0])
+                        ver_rateFF = float(data[1])
+                        rates_data += "G%d;%0.2f;%0.2f|" %(j+1, ver_rateTT, ver_rateFF)
+                else:
+                    if random_flag:
+                        ver_rateTT = random.uniform(0.0,1.0)
+                        ver_rateFF = random.uniform(0.0,1.0)
+                        rates_data += "G%d;%0.2f;%0.2f|" %(j+1, ver_rateTT, ver_rateFF)
+                    else:
+                        ver_rateTT = -1.0
+                        ver_rateFF = -1.0
+                        rates_data += "G%d;%0.2f;%0.2f|" %(j+1, ver_rateTT, ver_rateFF)
+            rates_data = rates_data.strip("|") + "#"
+        rates_string = init + rates_data.strip("#")
+        master.quit()
+        
+    # button to display all the calculated credit scores and sgpa 
+    row_index += 1
+    button1=tk.Button(master, text="Save", bg="green", command=store_data) 
+    button1.grid(row= row_index, column= nAgents+2) 
+        
+    master.mainloop() 
+    master.destroy()
+    return rates_string
+
+
+if __name__ == "__main__":
+    main(sys.argv)
+
+
+
+
+    # def getFixedRates(message):
+#     flag_not_float = False
+#     rate = "-1.0"
+#     try:
+#         rate = float(input(message))
+#     except ValueError:
+#         flag_not_float = True
+
+#     while (float(rate) <0.0 or float(rate) > 1.0 or flag_not_float):
+#         try:                    
+#             flag_not_float = False
+#             rate = float(input("ERROR. " + message))
+#         except ValueError:
+#             flag_not_float = True
+
+#     return rate 
+
+# def getTimeLength(message):
+#     flag_not_float = False
+#     rate = "-1.0"
+#     try:
+#         rate = float(input(message))
+#     except ValueError:
+#         flag_not_float = True
+
+#     while (float(rate) <0.0 or flag_not_float):
+#         try:                    
+#             flag_not_float = False
+#             rate = float(input("ERROR. " + message))
+#         except ValueError:
+#             flag_not_float = True
+
+#     return rate 
+
+# def getFixedAgentsID(event_list, agents_count):
+#     fixed_rates_agent_list = list()
+#     check = None
+#     flag_not_int = False
+
+#     for x in event_list:
+#         for y in x.related_actions:
+#             print(fixed_rates_agent_list)
+#             check = -1
+#             while check != 0:
+#                 try:
+#                     check = int(input(" \n Do you want to fix the rates of an agent for the action %s during event %s?: \n Enter 1 for G1, 2 for G2, ..., %d for G%d. \n Enter 0 to exit.\n" %(y.ID, x.ID, agents_count, agents_count)))
+#                 except ValueError:
+#                     flag_not_int = True
+                
+#                 while (flag_not_int or check not in range(0,agents_count+1)):
+#                     try:                    
+#                         flag_not_int = False
+#                         check = int(input(" \n ERROR.\n Enter 1 for G1, 2 for G2, ..., %d for G%d. \n Enter 0 to exit.\n" %(agents_count, agents_count)))
+#                     except ValueError:
+#                         flag_not_int = True
+                    
+#                 if [check, y.ID, x.ID] not in fixed_rates_agent_list and check != 0:
+#                         fixed_rates_agent_list.append([check,y.ID, x.ID]) 
+
+
+#     return fixed_rates_agent_list
